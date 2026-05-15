@@ -17,10 +17,17 @@ import Products from "./Pages/Dashboard/Products/Products";
 import AddProduct from "./Pages/Dashboard/Products/AddProduct";
 import EditProduct from "./Pages/Dashboard/Products/EditProduct";
 import NavBar from "./Components/Website/NavBar/NavBar";
-import CatigoriesHome from "./Pages/Website/Catigories";
+import CatigoriesSearch from "./Pages/Website/CatigoriesSearch/CatigoriesSearch";
 import SingleProduct from "./Components/Website/Home/Products/SingleProduct/SingleProduct";
 import Footer from "./Components/Website/Footer";
 import SingleCategories from "./Components/Website/SingleCategories/SingleCategories";
+import Shop from "./Pages/Website/Shop/Shop";
+import Profile from "./Pages/Website/Profile/Profile";
+import Orders from "./Pages/Dashboard/Orders";
+import MyOrders from "./Pages/Website/MyOrders";
+import Messages from "./Pages/Dashboard/Messages";
+import Wishlist from "./Pages/Website/Wishlist";
+import AboutUs from "./Pages/Website/About/AboutUs";
 import "./App.css";
 
 export default function App() {
@@ -31,9 +38,14 @@ export default function App() {
         <Route element={<NavBar />}>
           <Route element={<Footer />}>
             <Route path="/" element={<Home />} />
-            <Route path="/catigories" element={<CatigoriesHome />} />
+            <Route path="/catigories" element={<CatigoriesSearch />} />
             <Route path="/product/:id" element={<SingleProduct />} />
             <Route path="/category/:id" element={<SingleCategories />} />
+            <Route path="/shop" element={<Shop />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/my-orders" element={<MyOrders />} />
+            <Route path="/wishlist" element={<Wishlist />} />
+            <Route path="/about" element={<AboutUs />} />
 
             <Route element={<RequireBack />}>
               <Route path="/login" element={<Login />} />
@@ -41,6 +53,7 @@ export default function App() {
             </Route>
           </Route>
         </Route>
+
         <Route path="/auth/google/callback" element={<GoogleCallback />} />
         <Route path="/*" element={<Err404 page="home" />} />
 
@@ -48,11 +61,14 @@ export default function App() {
         <Route element={<RequireAuth allowedRole={["1995", "1999"]} />}>
           <Route path="/dashboard" element={<Dashboard />}>
             <Route path="page/404" element={<Err404 page="dashboard" />} />
-            {/* Users */}
             <Route element={<RequireAuth allowedRole={["1995"]} />}>
+              {/* Users */}
               <Route path="users" element={<Users />} />
               <Route path="users/:id" element={<UpdateUser />} />
               <Route path="user/add" element={<AddUser />} />
+              {/* Orders */}
+              <Route path="orders" element={<Orders />} />
+              <Route path="messages" element={<Messages />} />
             </Route>
 
             <Route element={<RequireAuth allowedRole={["1999", "1995"]} />}>

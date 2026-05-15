@@ -22,12 +22,13 @@ export default function ScaletonSingleProduct() {
         <SkeletonPage width={"848px"} height={"2px"} number={1} />
         <div className="d-flex align-items-center justify-content-between">
           <div>
-            <div className="d-flex align-items-center gap-1">
-              <SkeletonPage width={"20px"} height={"16px"} number={5} />
+            <SkeletonPage width="159px" height="24px" number={1} />
+            <div className="d-flex align-items-center gap-2">
+              <SkeletonPage width="20px" height="16px" number={5} />
             </div>
-            <div className="d-flex align-items-center gap-1 mt-1">
-              <SkeletonPage width={"55px"} height={"36px"} number={1} />
-              <SkeletonPage width={"34px"} height={"24px"} number={1} />
+            <div className="d-flex align-items-center gap-2">
+              <SkeletonPage width="56px" height="36px" number={1} />
+              <SkeletonPage width="35px" height="25px" number={1} />
             </div>
           </div>
           <div className="d-flex align-items-center gap-4 w-50">

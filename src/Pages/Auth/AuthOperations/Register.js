@@ -5,19 +5,17 @@ import Cookie from "cookie-universal";
 import { Form } from "react-bootstrap";
 import { Container } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faEye,
-  faEyeSlash,
-  faTriangleExclamation,
-} from "@fortawesome/free-solid-svg-icons";
-import BtnSubmit from "../../../Components/Dashboard/BtnSubmit";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import BtnSubmit from "../../../Components/Btn/BtnSubmit";
+import { Link } from "react-router-dom";
+import { useToast } from "../../../Context/Toast Notification/ToastNotification";
 
 export default function Register() {
   // states
   const [forms, setForms] = useState({ name: "", email: "", password: "" });
-  const [err, setErr] = useState("");
   const [loding, setLoding] = useState(false);
   const [iconEye, setIconEye] = useState(false);
+  const { addToast } = useToast();
 
   // ref
   const inputOne = useRef(null);
@@ -43,9 +41,12 @@ export default function Register() {
     } catch (err) {
       setLoding(false);
       if (err.response.status === 422) {
-        setErr("Email is already been taken");
+        addToast(
+          "The email address is already in use. Please login . ",
+          "error",
+        );
       } else {
-        setErr("Internal Server Error");
+        addToast("Internal Server Error", "error");
       }
     }
   }
@@ -107,27 +108,32 @@ export default function Register() {
                   />
                 </div>
               </Form.Group>
-              <BtnSubmit loding={loding} name="Register" className="btn-Auth btn-primary" />
-              <div className="google-btn">
-                <a href={`http://127.0.0.1:8000/login-google`}>
+              <BtnSubmit
+                loding={loding}
+                name="Register"
+                width="150px"
+                className="btn-Auth btn-primary"
+              />
+              <a href={`http://127.0.0.1:8000/login-google`}>
+                <div className="google-btn">
                   <div className="google-icon-wrapper">
                     <img
                       className="google-icon"
-                      src="https://img.icons8.com/?size=100&id=17949&format=png&color=000000"
+                      src={require(`../../../Assets/icon-google.png`)}
                       alt=""
                     />
                   </div>
                   <p className="btnGoogle-text">
                     <b>Sign in with google</b>
                   </p>
-                </a>
+                </div>
+              </a>
+              <div className="d-flex align-items-center gap-2 mt-2">
+                <p className="m-0">Do you already have an account?</p>
+                <Link to="/login" className="text-primary">
+                  Log in
+                </Link>
               </div>
-              {err !== "" && (
-                <span className="error">
-                  <FontAwesomeIcon icon={faTriangleExclamation} />
-                  {err}
-                </span>
-              )}
             </div>
           </Form>
         </div>

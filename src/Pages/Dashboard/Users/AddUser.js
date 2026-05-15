@@ -9,7 +9,7 @@ import { Form } from "react-bootstrap";
 import { Axios } from "../../../Api/Axios";
 import { ADD, USER } from "../../../Api/Api";
 import { useNavigate } from "react-router-dom";
-import BtnSubmit from "../../../Components/Dashboard/BtnSubmit";
+import BtnSubmit from "../../../Components/Btn/BtnSubmit";
 
 export default function UpdateUser() {
   // User

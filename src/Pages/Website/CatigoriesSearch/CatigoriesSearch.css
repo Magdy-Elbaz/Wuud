@@ -1,0 +1,27 @@
+.categories-wrapper {
+  background-color: #dfdddd;
+  min-height: calc(100vh - 92px);
+}
+
+.catigory-item {
+  width: 250px;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+}
+
+.catigory-item:hover {
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.icon-search-catigory {
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+}

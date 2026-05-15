@@ -6,8 +6,8 @@ export default function BtnSubmit(props) {
     <button
       type="submit"
       disabled={props.disabled}
-      className={`btn ${props.className || "btn-primary w-100 py-2"}`}
-      style={{ width: props.width || "" }}
+      className={`btn ${props.className || "btn-primary py-2"}`}
+      style={{ width: props.width || "100%" }}
     >
       {props.loding ? (
         <div

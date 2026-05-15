@@ -1,0 +1,36 @@
+tbody tr td,
+thead tr th {
+  padding-left: 20px !important;
+  border: none !important;
+  white-space: nowrap;
+}
+
+.table-responsive {
+    overflow-x: auto !important;
+    display: block;
+    width: 100%;
+    scrollbar-width: thin !important;
+    scrollbar-color: #e1b070 #f1f1f1 !important;
+}
+
+.table-responsive::-webkit-scrollbar {
+    height: 10px !important;
+    display: block !important;
+    width: 10px !important;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+    background-color: #e1b070 !important;
+    border-radius: 10px !important;
+    visibility: visible !important;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+    background: #eeeeee !important;
+    display: block !important;
+}
+
+.form-check-input:checked {
+    background-color: #1e1f20 !important; /* حط اللون اللي تحبه هنا */
+    border-color: #1e1f20 !important;
+}

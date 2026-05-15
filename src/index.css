@@ -10,11 +10,11 @@ html {
   scrollbar-color: #e1b070 #fffdfd;
   scrollbar-width: thin;
   scroll-behavior: smooth;
+  /* color: #e5c293; */
 }
 
 body {
   font-family: "Lato", sans-serif;
-  overflow-y: overlay;
 }
 
 .image-gallery-image {
@@ -22,8 +22,8 @@ body {
   object-fit: cover; 
 }
 
-.h-100 {
-  height: 100vh;
+.h-screen {
+  min-height: calc(100vh - 132px);
 }
 
 .row {
@@ -43,4 +43,12 @@ body {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.text-succes {
+  color: rgb(27, 243, 27) ;
+}
+
+.text-cancle {
+  color: rgb(154, 14, 14);
 }

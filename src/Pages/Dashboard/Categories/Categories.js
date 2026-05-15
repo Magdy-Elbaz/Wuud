@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { CATEGORIES, CATEGORY } from "../../../Api/Api";
+import { CATEGORIES, CATEGORY, SearchCategory } from "../../../Api/Api";
 import { Axios } from "../../../Api/Axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBoxesStacked } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import TableShow from "../../../Components/Dashboard/Table";
+import TableShow from "../../../Components/Dashboard/Table/Table";
 
 const headerTable = [
   {
@@ -15,8 +15,8 @@ const headerTable = [
     key: "image",
     name: "Image",
   },
-  {key: "created_at",name: "Created"},
-  {key: "updated_at",name: "Updated"}
+  { key: "created_at", name: "Created" },
+  { key: "updated_at", name: "Updated" },
 ];
 
 export default function Categories() {
@@ -61,10 +61,10 @@ export default function Categories() {
           header={headerTable}
           data={categories}
           delete={CATEGORY}
-          render={setRender}
+          setRender={setRender}
           loding={loding}
-          search="title"
-          searchLink={CATEGORY}
+          searchName="title"
+          searchLink={SearchCategory}
         />
       </div>
     </>

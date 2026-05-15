@@ -6,32 +6,34 @@ export default function PlusMinusBtn(props) {
   const [btn, setBtn] = useState(props.count || 1);
 
   useEffect(() => {
-    props.setCount(+btn);
-    if (+btn < 0 || btn === "") {
-      setBtn(0);
-    } else if (props.stock) {
-      if (+btn > props.stock) {
-        setBtn(props.stock);
-      }
+    props.setCount && props.setCount(+btn);
+    if (+btn < 1 ) {
+      setBtn(1);
+    } else if (+btn > props.stock) {
+      setBtn(props.stock);
     }
 
     if (props.changeCount) {
-      props.changeCount(props.id, btn);
+      props.changeCount(props.id, +btn);
     }
   }, [btn]);
+
+  useEffect(() => {
+    props.count && setBtn(props.count);
+  }, [props.count]);
 
   return (
     <div className="d-flex align-items-center gap-2 w-100">
       <button
         className="btn btn-primary fw-bold py-1 px-2"
         onClick={() => {
-          if (+btn > 0) {
+          if (+btn > 1) {
             setBtn((prev) => prev - 1);
           } else {
-            setBtn(0);
+            setBtn(1);
           }
         }}
-        disabled={+btn === 0}
+        disabled={+btn === 1}
       >
         <FontAwesomeIcon icon={faMinus} />
       </button>

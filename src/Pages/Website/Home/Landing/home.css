@@ -37,24 +37,38 @@
   }
 }
 
-/* Catigories */
-
-.categories-wrapper {
-  background-color: #dfdddd;
-  min-height: calc(100vh - 92px);
-}
-
-.catigory-item {
-  width: 250px;
-}
 
 /* Product */
 .product-item {
   width: 250px;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+}
+
+.product-item:hover {
+  scale: 101%;
+  transform: translateY(-5px);
+  -webkit-transform: translateY(-5px);
+  -moz-transform: translateY(-5px);
+  -ms-transform: translateY(-5px);
+  -o-transform: translateY(-5px);
 }
 
 .product-item img {
   height: 200px;
+  overflow: hidden;
+  transition: .7s ease;
+  -webkit-transition: .7s ease;
+  -moz-transition: .7s ease;
+  -ms-transition: .7s ease;
+  -o-transition: .7s ease;
+}
+
+.product-item:hover img {
+  scale: 115%;
 }
 
 .sale {
@@ -65,6 +79,10 @@
 
 @media (max-width: 768px) {
   .product-item {
+    width: 100%;
+  }
+
+  .product {
     width: 100%;
   }
 }
@@ -101,7 +119,28 @@
   }
 }
 
-
 .top-rated {
   max-height: 720px;
+}
+
+.img-con {
+  background: url("../../../../Assets/WhatsApp.jpeg") center/cover fixed;
+  height: 400px;
+  width: 100%;
+  z-index: 1;
+}
+
+.img-con::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: -1;
+}
+
+.img-con h3 {
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }

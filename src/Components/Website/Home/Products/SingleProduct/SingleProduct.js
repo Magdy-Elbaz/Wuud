@@ -3,35 +3,32 @@ import { Container } from "react-bootstrap";
 import ImageGallery from "react-image-gallery";
 import { useParams } from "react-router-dom";
 import { Axios } from "../../../../../Api/Axios";
-import { CART, PRODUCT } from "../../../../../Api/Api";
-import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons";
+import { CART, FavoriteToggle, PRODUCT } from "../../../../../Api/Api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping, faHeart } from "@fortawesome/free-solid-svg-icons";
 import ScaletonSingleProduct from "./ScaletonSingleProduct";
 import LatestSaleProduct from "../SaleProducts/LatestSaleProduct";
-import PlusMinusBtn from "../../../Btns/PlusMinusBtn";
-import { CartContext } from "../../../../../Context/CartShopContext";
+import PlusMinusBtn from "../../../../Btn/PlusMinusBtn";
+import { ChangeAlContext } from "../../../../../Context/ChangeAllContext";
+import { useToast } from "../../../../../Context/Toast Notification/ToastNotification";
+import Loding from "../../../../Loding/Loding";
+import CustomerOpinions from "../../../CustomerComments/CustomerOpinions";
+import MetaProduct from "../MetaProduct";
+import CheckProductQuantity from "../../../../../helpers/CheckProductQuantity";
 
 export default function SingleProduct() {
-  const [product, setProduct] = useState("");
+  const [product, setProduct] = useState([]);
   const [images, setImages] = useState([]);
   const [loding, setLoding] = useState(true);
   const [lodingCart, setLodingCart] = useState(false);
-  const [error, setError] = useState(false);
-  const { setIsChange } = useContext(CartContext);
-  const [count, setCount] = useState(0);
+  const { addToast } = useToast();
+  const { isChange, setIsChange } = useContext(ChangeAlContext);
+  const [count, setCount] = useState(1);
   const { id } = useParams();
-
-  const roundStars = Math.round(product.rating);
-  const stars = Math.min(roundStars, 5);
-  const showGoldStars = Array.from({ length: stars }).map((_, index) => (
-    <FontAwesomeIcon key={index} className="text-warning" icon={faStar} />
-  ));
-  const showEmptyStars = Array.from({ length: 5 - stars }).map((_, index) => (
-    <FontAwesomeIcon key={index} icon={regularStar} />
-  ));
+  const [stock, setStock] = useState(product?.stock);
 
   useEffect(() => {
+    setLoding(true);
     Axios.get(`${PRODUCT}/${id}`)
       .then((pro) => {
         setProduct(pro.data[0]);
@@ -45,7 +42,9 @@ export default function SingleProduct() {
         );
       })
       .finally(() => setLoding(false));
-  }, []);
+  }, [isChange, id]);
+
+  CheckProductQuantity(setStock, product);
 
   const checkstock = async () => {
     try {
@@ -53,16 +52,14 @@ export default function SingleProduct() {
       const getProduct = JSON.parse(localStorage.getItem("product")) || [];
       const productCount = getProduct.filter((pro) => +pro.id === +id)?.[0]
         ?.count;
-      console.log(productCount);
       await Axios.post(`${CART}/check`, {
         product_id: id,
         count: count + (productCount ? productCount : 0),
       });
-      setError(false);
+      addToast("Added to cart");
       return true;
     } catch (err) {
-      console.log(err);
-      setError(true);
+      addToast("Sorry, the requested quantity is not available.", "error");
       return false;
     } finally {
       setLodingCart(false);
@@ -91,14 +88,23 @@ export default function SingleProduct() {
     }
   };
 
+  async function handleFavorites() {
+    try {
+      await Axios.post(`${FavoriteToggle}/${product.id}`);
+      setIsChange((prev) => !prev);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   return (
     <>
       <Container className="mt-5 p-0">
         {loding ? (
           <ScaletonSingleProduct />
         ) : (
-          <div className="d-flex flex-wrap">
-            <div className="col-lg-4 col-md-6 col-12">
+          <div className="d-flex flex-wrap position-relative">
+            <div className="col-lg-4 col-md-6 col-11">
               <ImageGallery
                 items={images}
                 showFullscreenButton={false}
@@ -110,6 +116,16 @@ export default function SingleProduct() {
                 slideInterval={6000}
               />
             </div>
+            <div
+              className="position-absolute"
+              style={{ top: "25px", right: "20px" }}
+            >
+              <FontAwesomeIcon
+                icon={faHeart}
+                className={`fs-5 ${!product.is_favorite ? "text-light" : "text-danger"} cursor-pointer`}
+                onClick={handleFavorites}
+              />
+            </div>
             <div className="col-lg-8 col-md-6 col-12 ps-3">
               <h1>{product.title}</h1>
               <p className="m-0 text-secondary">{product.About}</p>
@@ -117,55 +133,21 @@ export default function SingleProduct() {
               <div className="mt-5">
                 <hr className="mb-0 mt-3" />
                 <div className="d-flex align-items-center justify-content-between mt-1">
-                  <div>
-                    {product.stock <= 5 && (
-                      <p className="m-0 text-danger">
-                        There is only {product.stock} left
-                      </p>
-                    )}
-                    <div className="d-flex align-items-center gap-1 mt-2">
-                      {showGoldStars}
-                      {showEmptyStars}
-                    </div>
-                    <div className="d-flex align-items-center gap-2">
-                      <p className="m-0 text-primary fs-4 fw-bold">
-                        ${product.price - product.discount}
-                      </p>
-                      <span className="text-decoration-line-through">
-                        ${product.price}
-                      </span>
-                    </div>
-                  </div>
-                  {product.stock > 0 ? (
+                  <MetaProduct product={product} stock={stock} />
+                  {stock > 0 ? (
                     <div className="w-50">
-                      {error && (
-                        <div
-                          className="alert alert-danger d-flex align-items-center justify-content-between"
-                          role="alert"
-                        >
-                          <p className="m-0">
-                            Sorry, the requested quantity is not available.
-                          </p>
-                          <button
-                            className="btn btn-close"
-                            onClick={() => setError(false)}
-                          />
-                        </div>
-                      )}
-                      <div className="d-flex align-items-center gap-4">
+                      <div className="d-flex align-items-center flex-wrap gap-4">
                         <div className="w-50">
-                          <PlusMinusBtn
-                            setCount={(data) => setCount(data)}
-                            stock={product.stock}
-                          />
+                          <PlusMinusBtn setCount={setCount} stock={stock} />
                         </div>
                         <button
-                          className={`btn p-1 px-3 btn-dark `}
+                          className="btn btn-dark d-flex align-items-center justify-content-center"
                           onClick={handleAddCart}
                           disabled={count === 0}
+                          style={{ width: "137px", height: "34px" }}
                         >
                           {lodingCart ? (
-                            "Loding"
+                            <Loding action={true} color="#fff" />
                           ) : (
                             <span>
                               Add To Cart
@@ -185,7 +167,8 @@ export default function SingleProduct() {
             </div>
           </div>
         )}
-        <LatestSaleProduct iconEye={false} />
+        <LatestSaleProduct />
+        {product.length !== 0 && <CustomerOpinions product={product} />}
       </Container>
     </>
   );

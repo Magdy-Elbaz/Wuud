@@ -6,7 +6,7 @@ import { Axios } from "../../../Api/Axios";
 import { ADD, CATEGORIES, EDIT, PRODUCT } from "../../../Api/Api";
 import { useNavigate, useParams } from "react-router-dom";
 import Loding from "../../../Components/Loding/Loding";
-import BtnSubmit from "../../../Components/Dashboard/BtnSubmit";
+import BtnSubmit from "../../../Components/Btn/BtnSubmit";
 
 export default function EditProduct() {
   const { id } = useParams();
@@ -299,7 +299,7 @@ export default function EditProduct() {
           <div
             className="d-flex align-items-center justify-content-center gap-2 py-3 rounded mb-2 flex-column w-100 "
             style={{
-              border: "2px dashed #038edc",
+              border: "2px dashed #e1b070",
               cursor: "pointer",
             }}
             onClick={handleOpenImage}
@@ -309,9 +309,7 @@ export default function EditProduct() {
               alt=""
               width="100px"
             />
-            <p className="fw-bold" style={{ color: "#038edc" }}>
-              Upload Images
-            </p>
+            <p className="fw-bold text-primary">Upload Images</p>
           </div>
           <div
             style={{ maxHeight: "510px", overflow: "auto" }}

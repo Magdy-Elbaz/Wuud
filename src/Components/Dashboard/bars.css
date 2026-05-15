@@ -1,6 +1,6 @@
 .Top-bar {
   position: sticky;
-  top: 0;
+  top: 5px;
   left: 0;
   height: 70px;
   z-index: 50;
@@ -31,52 +31,31 @@
 
 .Side-bar {
   position: sticky;
-  display: flex;
   top: 0;
   gap: 10px;
   z-index: 2;
   padding: 0 10px;
-  flex-direction: column;
   border-radius: 0 30px 30px 0;
 }
 
-.Side-bar .link-bashboard {
-  text-align: center;
-  font-weight: bolder;
-  text-decoration: none;
-  font-size: 20px;
-  color: #038edc;
-}
-
-.Side-bar .link-bashboard:hover {
-  color: #0780c6;
-}
-
 .side-bar-link {
-  color: #495057;
   text-decoration: none;
   font-size: 18px;
-  font-weight: bold;
   transition: 0.3s;
   padding: 7px 0;
   border-radius: 7px;
 }
 
+.side-bar-link:hover,
 .Side-bar .active,
 .Side-bar .active:hover {
-  background-color: #e6e7ea;
-  color: #038edc;
-}
-
-.side-bar-link:hover {
-  color: black;
+  color: black !important;
   background-color: #e6e7ea;
 }
 
 @media (max-width: 768px) {
   .Top-bar {
-    width: 100%;
-    position: fixed;
+    top: 0;
     border-radius: 0;
     margin: 0;
   }

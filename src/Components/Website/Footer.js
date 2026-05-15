@@ -5,19 +5,25 @@ export default function Footer() {
   return (
     <>
       <Outlet />
-      <div className="p-2 border-top border-secondary">
+      <div className="p-2 bg-primary">
         <Container>
-          <div className="d-flex align-items-center justify-content-between gap-2 flex-wrap">
-            <p className="m-0 text-secondary">
-              @Copyright 2026.{" "}
-              <Link to="/" className="text-decoration-none me-1">
-                Wuud.com
+          <div className="d-flex align-items-center justify-content-center gap-2 flex-wrap">
+            <p className="m-0 text-dark">
+              @Copyright 2026.
+              <Link to="/" className="text-decoration-none text-light me-1">
+                Wuud
               </Link>
               All Rights Reserved.
             </p>
-            <p className="m-0">
+            <p className="m-0 text-dark">
               Developed by:
-              <span className="text-primary"> Magdy Elbaz</span>
+              <Link
+                to="https://magdy-elbaz.vercel.app/"
+                target="_blank"
+                className="text-light text-decoration-none ms-1"
+              >
+                Magdy Elbaz
+              </Link>
             </p>
           </div>
         </Container>

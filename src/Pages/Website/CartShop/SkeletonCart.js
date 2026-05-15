@@ -1,4 +1,4 @@
-import SkeletonPage from "../SkeletonPage";
+import SkeletonPage from "../../../Components/Website/SkeletonPage";
 
 export default function SkeletonCart({ num }) {
   const showSkeleton = Array.from({ length: num }).map((_, index) => (

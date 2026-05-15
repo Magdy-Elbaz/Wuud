@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { ADD, CATEGORY } from "../../../Api/Api";
 import { Axios } from "../../../Api/Axios";
 import { Form } from "react-bootstrap";
-import BtnSubmit from "../../../Components/Dashboard/BtnSubmit";
+import BtnSubmit from "../../../Components/Btn/BtnSubmit";
 
 export default function AddCategory() {
   // Category

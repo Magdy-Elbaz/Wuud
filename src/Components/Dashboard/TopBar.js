@@ -1,26 +1,22 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faHouseChimney } from "@fortawesome/free-solid-svg-icons";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { Menue } from "../../Context/MenueContext";
-import { USER } from "../../Api/Api";
-import { Axios } from "../../Api/Axios";
 import { Link } from "react-router-dom";
+import { useUser } from "../../Context/UserContext";
 import "./bars.css";
 
 export default function TopBar() {
   const context = useContext(Menue);
-  const [name, setName] = useState("");
-
-  useEffect(() => {
-    Axios.get(`/${USER}`).then((data) => setName(data.data.name));
-  }, []);
+  const { user } = useUser();
 
   return (
-    <div
-      className={`Top-bar d-flex align-items-center justify-content-between bg-primary`}
-    >
+    <div className="Top-bar d-flex align-items-center justify-content-between bg-primary">
       <div className="d-flex align-items-center gap-2 text-light">
-        <h3>{name}</h3>
+        <div className="d-flex align-items-center gap-2">
+          <img src={user.avatar} className="icon-user" alt="" />
+          <h3>{user.name}</h3>
+        </div>
         <FontAwesomeIcon
           cursor={"pointer"}
           icon={faBars}

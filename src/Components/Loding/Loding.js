@@ -2,7 +2,9 @@ import "./loding.css";
 
 export default function Loding({ action, color }) {
   return (
-    <div className={`${!action && "spinner-countiner"}`}>
+    <div
+      className={`d-flex align-items-center justify-content-center ${!action && "spinner-countiner"}`}
+    >
       <div
         className="spinner"
         style={{

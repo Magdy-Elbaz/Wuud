@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { PRODUCT, PRODUCTS } from "../../../Api/Api";
+import { PRODUCT, PRODUCTS, SearchProduct } from "../../../Api/Api";
 import { Axios } from "../../../Api/Axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTruckFast } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import TableShow from "../../../Components/Dashboard/Table";
+import TableShow from "../../../Components/Dashboard/Table/Table";
 
 const headerTable = [
   { key: "images", name: "Images" },
@@ -70,10 +70,10 @@ export default function Products() {
           header={headerTable}
           data={products}
           delete={PRODUCT}
-          render={setRender}
+          setRender={setRender}
           loding={loding}
-          search="title"
-          searchLink={PRODUCT}
+          searchName="title"
+          searchLink={SearchProduct}
         />
       </div>
     </>

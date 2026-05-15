@@ -1,12 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Loding from "../../../Components/Loding/Loding";
 import { faSquarePlus } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { ADD, CATEGORIES, EDIT, PRODUCT } from "../../../Api/Api";
 import { Axios } from "../../../Api/Axios";
 import { Button, Form } from "react-bootstrap";
-import BtnSubmit from "../../../Components/Dashboard/BtnSubmit";
+import BtnSubmit from "../../../Components/Btn/BtnSubmit";
+import Loding from "../../../Components/Loding/Loding";
 
 export default function AddProduct() {
   // Form state
@@ -37,6 +37,7 @@ export default function AddProduct() {
   const [categories, setCategories] = useState([]);
   const [sent, setSent] = useState(false);
   const [id, setId] = useState();
+  const [logingDelet, setLogingDelet] = useState(false);
 
   // loding
   const [loding, setLoding] = useState(false);
@@ -133,6 +134,7 @@ export default function AddProduct() {
 
   async function handleDeleteImg(key, img) {
     const idImage = ids.current[key];
+    setLogingDelet(true);
     try {
       await Axios.delete(`product-img/${idImage}`);
       setImages((prev) => prev.filter((image) => image !== img));
@@ -140,6 +142,8 @@ export default function AddProduct() {
       renderImage.current--;
     } catch (err) {
       console.log(err);
+    } finally {
+      setLogingDelet(false);
     }
   }
 
@@ -175,13 +179,15 @@ export default function AddProduct() {
             </p>
           </div>
         </div>
-        <Button onClick={() => handleDeleteImg(key, img)} variant="danger">
-          Delete
-        </Button>
+        <div style={{ width: "72px" }}>
+          <Button onClick={() => handleDeleteImg(key, img)} variant="danger" className="w-100">
+            {logingDelet ? <Loding action={true} color="#fff" /> : "Delete"}
+          </Button>
+        </div>
       </div>
       <div className="custom-progress mt-2">
         <span
-          className="inner-progress"
+          className="inner-progress bg-primary h-100"
           percent="0%"
           ref={(e) => (progressRef.current[key] = e)}
         ></span>
@@ -293,7 +299,7 @@ export default function AddProduct() {
           <div
             className="d-flex align-items-center justify-content-center gap-2 py-3 rounded mb-2 flex-column w-100 "
             style={{
-              border: `2px dashed ${sent ? "#038edc" : "gray"}`,
+              border: `2px dashed ${sent ? "#e1b070" : "gray"}`,
               cursor: sent && "pointer",
             }}
             onClick={handleOpenImage}
@@ -304,7 +310,10 @@ export default function AddProduct() {
               width="100px"
               style={{ filter: !sent && "grayscale(1)" }}
             />
-            <p className="fw-bold" style={{ color: sent ? "#038edc" : "gray" }}>
+            <p
+              className={`fw-bold ${sent && "text-primary"}`}
+              style={{ color: !sent && "gray" }}
+            >
               Upload Images
             </p>
           </div>

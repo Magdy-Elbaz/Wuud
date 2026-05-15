@@ -6,7 +6,7 @@ import { CATEGORY, EDIT } from "../../../Api/Api";
 import { useNavigate, useParams } from "react-router-dom";
 import Loding from "../../../Components/Loding/Loding";
 import { faSquarePen } from "@fortawesome/free-solid-svg-icons";
-import BtnSubmit from "../../../Components/Dashboard/BtnSubmit";
+import BtnSubmit from "../../../Components/Btn/BtnSubmit";
 
 export default function EditCategory() {
   // category

@@ -1,31 +1,26 @@
 import Cookie from "cookie-universal";
-import { useEffect, useState } from "react";
-import { Navigate, Outlet, useNavigate } from "react-router-dom";
-import { USER } from "../../../Api/Api";
-import { Axios } from "../../../Api/Axios";
+import { Navigate, Outlet } from "react-router-dom";
 import Err403 from "../Error/403/403";
 import Err404 from "../Error/404/404";
 import Loding from "../../../Components/Loding/Loding";
+import { useUser } from "../../../Context/UserContext";
+import { useEffect } from "react";
 
 export default function RequireAuth({ allowedRole }) {
   // User
-  const [user, setUser] = useState("");
-  const navigate = useNavigate();
-
+  const { user, setShowNav } = useUser();
   // token & cookie
   const cookie = Cookie();
   const token = cookie.get("Bearer");
 
   useEffect(() => {
-    Axios.get(`/${USER}`)
-      .then((data) => setUser(data.data))
-      .catch(() => navigate("/login", { replace: true }));
+    setShowNav(true);
   }, []);
 
   return (
     <>
       {token ? (
-        user === "" ? (
+        user.length === 0 ? (
           <div style={{ position: "absolute", top: 0, left: 0 }}>
             <Loding />
           </div>
