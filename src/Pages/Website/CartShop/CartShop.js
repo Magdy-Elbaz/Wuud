@@ -133,7 +133,7 @@ export default function CartShop({ open, setOpen }) {
   return (
     <>
       <div
-        className="closeCart"
+        className="closeCart d-none d-md-block"
         onClick={() => setOpen(false)}
         style={{ right: open ? "0" : "-100%" }}
       />
