@@ -2,10 +2,9 @@
 
 .form {
   background:
-    linear-gradient(110deg, white 0%, white 50%, rgba(0, 0, 0, 0.1) 50%),
+    linear-gradient(rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.7) 100%),
     url("../../../Assets/form.jpg") center/cover no-repeat;
-  width: 100%;
-  height: 30rem;
+  width: 400px;
   border-radius: 12px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
   padding: 20px;
@@ -15,44 +14,24 @@
   -o-border-radius: 12px;
 }
 
-.register {
-  height: 33rem;
-}
-
-.custom-form {
-  width: 50%;
-  margin-top: 25px;
-}
-
-.form-custom {
-  margin-bottom: 20px;
-  position: relative;
-}
-
-.form-custom-register {
-  margin-bottom: 0;
-}
-
 .form-custom label,
 .form-custom input {
   display: block;
 }
 
 .form-custom input {
-  padding: 20px;
+  padding: 12px;
   outline: none;
-  border-radius: 8px;
+  border-radius: 8px !important;
   border: 0;
-  background-color: white;
-  width: 90%;
   border-bottom: 4px solid transparent;
   box-shadow: 0 0 5px rgb(153, 152, 152);
   transition: 0.3s;
   margin-bottom: 27px;
-}
-
-.form-custom-register input {
-  padding: 12px;
+  -webkit-border-radius: 8px !important;
+  -moz-border-radius: 8px !important;
+  -ms-border-radius: 8px !important;
+  -o-border-radius: 8px !important;
 }
 
 .form-custom label {
@@ -63,7 +42,16 @@
   font-size: 13px;
   font-weight: bold;
   transition: 0.3s;
-  z-index: -1;
+  z-index: 1;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+}
+
+.form-custom.ar label {
+  right: 0;
+  color: rgb(80, 77, 77);
 }
 
 .form-custom input:focus {
@@ -80,31 +68,13 @@
 
 .form-custom input:placeholder-shown + label {
   top: 0;
-}
-
-@media (max-width: 992px) {
-  .form {
-    background:
-      linear-gradient(
-        rgba(255, 255, 255, 0.8) 0%,
-        rgba(255, 255, 255, 0.8) 100%
-      ),
-      url("../../../Assets/form.jpg") center/cover no-repeat;
-  }
-
-  .custom-form {
-    width: 100%;
-  }
-
-  .form-custom input {
-    width: 100%;
-  }
+  z-index: -1;
 }
 
 /* btn */
 
 .btn-Auth {
-  padding: 10px 30px !important;
+  padding: 10px 0 !important;
   transition: 0.3s !important;
 }
 
@@ -113,14 +83,14 @@
 }
 
 .google-btn {
-  width: 184px;
+  width: fit-content;
   height: 42px;
   background-color: #4285f4;
   border-radius: 2px;
   box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
   cursor: pointer;
   user-select: none;
-  margin-top: 20px;
+  margin-top: 10px;
   transition: 0.3s;
 }
 
@@ -133,39 +103,19 @@
 }
 
 .google-btn .google-icon-wrapper {
-  position: absolute;
-  margin-top: 1px;
-  margin-left: 1px;
   width: 40px;
-  height: 40px;
   border-radius: 2px;
-  background-color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .google-btn .google-icon {
-  position: absolute;
   width: 18px;
   height: 18px;
 }
 
 .google-btn .btnGoogle-text {
   float: right;
-  margin: 11px 11px 0 0;
   color: #fff;
   font-size: 14px;
   letter-spacing: 0.2px;
   font-family: "Roboto";
-}
-
-.icon-eye {
-  position: absolute;
-  right: 13%;
-  top: 37%;
-  transform: translateY(-50%);
-  font-size: 20px;
-  cursor: pointer;
-  color: #aeaeae;
 }

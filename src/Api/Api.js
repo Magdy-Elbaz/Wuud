@@ -1,4 +1,5 @@
-export const baseUrl = `https://back-end-wuud-production-8c0b.up.railway.app/api`;
+// export const baseUrl = `https://back-end-wuud-production-8c0b.up.railway.app/api`;
+export const baseUrl = `http://127.0.0.1:8000/api`;
 
 export const REGISTER = "register";
 export const LOGIN = "login";
@@ -24,6 +25,7 @@ export const SearchProduct = "search-product";
 export const LatestSale = "latest-sale";
 export const LATEST = "latest";
 export const TopRated = "top-rated";
+export const productsSearch = "products-search";
 // Cart
 export const CART = "cart";
 // checkout
@@ -48,3 +50,6 @@ export const FAVORITES = "favorites";
 // reviews
 export const Reviews = "reviews";
 export const LatestReviews = "latest-reviews";
+// Shop
+export const SHOP = "shop";
+export const shopSearch = "shop-search";

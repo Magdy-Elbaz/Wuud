@@ -12,7 +12,7 @@ export default function WindowProvider({ children }) {
 
     window.addEventListener("resize", WindowWidth);
 
-    return window.removeEventListener("resize", WindowWidth);
+    return () => window.removeEventListener("resize", WindowWidth);
   }, []);
 
   return (

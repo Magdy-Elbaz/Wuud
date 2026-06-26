@@ -15,6 +15,8 @@ import Loding from "../../../../Loding/Loding";
 import CustomerOpinions from "../../../CustomerComments/CustomerOpinions";
 import MetaProduct from "../MetaProduct";
 import CheckProductQuantity from "../../../../../helpers/CheckProductQuantity";
+import { useTheme } from "../../../../../Context/ThemeContext";
+import { useTranslation } from "react-i18next";
 
 export default function SingleProduct() {
   const [product, setProduct] = useState([]);
@@ -26,6 +28,9 @@ export default function SingleProduct() {
   const [count, setCount] = useState(1);
   const { id } = useParams();
   const [stock, setStock] = useState(product?.stock);
+  const theme = useTheme();
+  const { t, i18n } = useTranslation();
+  const [lodingWishlist, setLodingWishlist] = useState(false);
 
   useEffect(() => {
     setLoding(true);
@@ -56,10 +61,10 @@ export default function SingleProduct() {
         product_id: id,
         count: count + (productCount ? productCount : 0),
       });
-      addToast("Added to cart");
+      addToast(t("Added to cart"));
       return true;
     } catch (err) {
-      addToast("Sorry, the requested quantity is not available.", "error");
+      addToast(t("Sorry, the requested quantity is not available."), "error");
       return false;
     } finally {
       setLodingCart(false);
@@ -89,22 +94,38 @@ export default function SingleProduct() {
   };
 
   async function handleFavorites() {
+    setLodingWishlist(true);
     try {
-      await Axios.post(`${FavoriteToggle}/${product.id}`);
+      const res = await Axios.post(`${FavoriteToggle}/${product.id}`);
       setIsChange((prev) => !prev);
+
+      if (res.data.is_favorite) {
+        addToast(t("It has been successfully added to your wishlist."));
+      } else {
+        addToast(t("It has been successfully removed from your wishlist."));
+      }
     } catch (err) {
-      console.log(err);
+      addToast(t("Please log in to save your favorites."), "error");
+    } finally {
+      setLodingWishlist(false);
     }
   }
 
   return (
     <>
-      <Container className="mt-5 p-0">
+      <Container
+        className="mt-5 p-0"
+        dir={i18n.language === "ar" ? "rtl" : "ltr"}
+      >
         {loding ? (
           <ScaletonSingleProduct />
         ) : (
-          <div className="d-flex flex-wrap position-relative">
-            <div className="col-lg-4 col-md-6 col-11">
+          <div className="d-flex flex-wrap justify-content-center position-relative">
+            <div
+              className="col-lg-4 col-md-6 col-11"
+              data-aos="fade-right"
+              dir="ltr"
+            >
               <ImageGallery
                 items={images}
                 showFullscreenButton={false}
@@ -116,41 +137,59 @@ export default function SingleProduct() {
                 slideInterval={6000}
               />
             </div>
-            <div
-              className="position-absolute"
-              style={{ top: "25px", right: "20px" }}
-            >
-              <FontAwesomeIcon
-                icon={faHeart}
-                className={`fs-5 ${!product.is_favorite ? "text-light" : "text-danger"} cursor-pointer`}
-                onClick={handleFavorites}
-              />
-            </div>
-            <div className="col-lg-8 col-md-6 col-12 ps-3">
-              <h1>{product.title}</h1>
-              <p className="m-0 text-secondary">{product.About}</p>
-              <h2>{product.description}</h2>
+            <div className={"col-lg-8 col-md-6 col-12 px-3"}>
+              <div className="d-flex align-items-center justify-content-between">
+                <div>
+                  <h1 data-aos="fade-up">{product.title}</h1>
+                  <p className="m-0 text-secondary" data-aos="fade-up">
+                    {product.About}
+                  </p>
+                  <h2 data-aos="fade-up">{product.description}</h2>
+                </div>
+                {lodingWishlist ? (
+                  <div
+                    style={{ width: "28px", height: "28px" }}
+                    className="rounded-circle bg-light d-flex align-items-center justify-content-center"
+                  >
+                    <Loding action={true} primaryLoding={true} />
+                  </div>
+                ) : (
+                  <FontAwesomeIcon
+                    icon={faHeart}
+                    className={`fs-5 ${!product.is_favorite ? "text-light" : "text-danger"} cursor-pointer`}
+                    onClick={handleFavorites}
+                  />
+                )}
+              </div>
               <div className="mt-5">
                 <hr className="mb-0 mt-3" />
                 <div className="d-flex align-items-center justify-content-between mt-1">
-                  <MetaProduct product={product} stock={stock} />
+                  <MetaProduct
+                    product={product}
+                    stock={stock}
+                    singleProduct={true}
+                  />
                   {stock > 0 ? (
                     <div className="w-50">
                       <div className="d-flex align-items-center flex-wrap gap-4">
-                        <div className="w-50">
+                        <div className="w-50" data-aos="fade-left">
                           <PlusMinusBtn setCount={setCount} stock={stock} />
                         </div>
                         <button
-                          className="btn btn-dark d-flex align-items-center justify-content-center"
+                          className={`btn ${theme === "dark" ? "btn-light" : "btn-dark"} d-flex align-items-center text-nowrap justify-content-center`}
                           onClick={handleAddCart}
                           disabled={count === 0}
-                          style={{ width: "137px", height: "34px" }}
+                          style={{
+                            width: i18n.language === "ar" ? "145px" : "137px",
+                            height: "34px",
+                          }}
+                          data-aos="fade-left"
                         >
                           {lodingCart ? (
                             <Loding action={true} color="#fff" />
                           ) : (
                             <span>
-                              Add To Cart
+                              {t("Add To Cart")}
                               <FontAwesomeIcon icon={faCartShopping} />
                             </span>
                           )}
@@ -159,7 +198,7 @@ export default function SingleProduct() {
                     </div>
                   ) : (
                     <p className="m-0 text-danger">
-                      This product is currently unavailable
+                      {t("This product is currently unavailable")}
                     </p>
                   )}
                 </div>
@@ -168,7 +207,7 @@ export default function SingleProduct() {
           </div>
         )}
         <LatestSaleProduct />
-        {product.length !== 0 && <CustomerOpinions product={product} />}
+        <CustomerOpinions product={product} id={id} />
       </Container>
     </>
   );

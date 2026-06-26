@@ -7,14 +7,7 @@ import { faBoxes } from "@fortawesome/free-solid-svg-icons";
 import { Container } from "react-bootstrap";
 import FilterChips from "../../Components/FilterChips";
 import BtnsOrders from "../../Components/Btn/BtnsOrders";
-
-const header = [
-  { key: "customer_name", name: "User Name" },
-  { key: "product_names", name: "Product Name" },
-  { key: "image", name: "Image" },
-  { key: "total_price", name: "Total Price" },
-  { key: "created_at", name: "Created" },
-];
+import { useTranslation } from "react-i18next";
 
 export default function MyOrders(props) {
   const [orders, setOrders] = useState([]);
@@ -25,6 +18,15 @@ export default function MyOrders(props) {
   const [render, setRender] = useState(false);
   const [filterChips, setFilterChips] = useState("All");
   const [selectedIds, setSelectedIds] = useState([]);
+  const { t, i18n } = useTranslation();
+
+  const header = [
+    { key: "customer_name", name: t("User Name") },
+    { key: "product_names", name: t("Product Name") },
+    { key: "image", name: t("Product Image" )},
+    { key: "total_price", name: t("Total Price") },
+    { key: "created_at", name: t("Created At") },
+  ];
 
   useEffect(() => {
     setLoding(true);
@@ -38,11 +40,11 @@ export default function MyOrders(props) {
   }, [render, page, filterChips, limit]);
 
   return (
-    <Container>
+    <Container dir={i18n.language === "ar" ? "rtl" : "ltr"}>
       <div className="h-screen p-2 overflow-hidden">
         <div className="d-flex align-items-center justify-content-between">
-          <h2 className="title-page text-secondary mt-2">
-            My Orders <FontAwesomeIcon icon={faBoxes} />
+          <h2 className="title-page text-secondary mt-2" data-aos="fade-right">
+            {t("My Orders")} <FontAwesomeIcon icon={faBoxes} />
           </h2>
         </div>
         <div className="mt-4">

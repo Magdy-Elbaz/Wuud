@@ -16,7 +16,7 @@ export default function Stars({ rating, product, setRating, action }) {
         readonly={action ? false : true}
         allowFraction={true}
         transition={action && true}
-        size={action ? 25 : 20} // حجم النجوم
+        size={action ? 25 : 20}
         fillColor="#ffd700"
       />
       {action && <div>{"(" + rating + "/5)"}</div>}

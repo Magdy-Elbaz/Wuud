@@ -7,13 +7,23 @@ export default function BtnSubmit(props) {
       type="submit"
       disabled={props.disabled}
       className={`btn ${props.className || "btn-primary py-2"}`}
-      style={{ width: props.width || "100%" }}
+      style={{ width: props.width || "100%", height: props.height }}
+      onClick={props.click}
+      data-aos="zoom-in"
+      data-aos-anchor-placement="top-bottom"
     >
       {props.loding ? (
         <div
           className={`d-flex align-items-center ${!props.noCenter && "justify-content-center"}`}
         >
-          <Loding action={true} color={props.colorLoding || "#eee"} />
+          <Loding
+            action={true}
+            animationCheckout={props.animationCheckout || false}
+            animationAddcart={props.animationAddcart || false}
+            animationSave={props.animationSave || false}
+            primaryLoding={props.primaryLoding || false}
+            color={props.colorLoding || "#eee"}
+          />
         </div>
       ) : props.icon ? (
         <div

@@ -5,19 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBoxesStacked } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import TableShow from "../../../Components/Dashboard/Table/Table";
-
-const headerTable = [
-  {
-    key: "title",
-    name: "Title",
-  },
-  {
-    key: "image",
-    name: "Image",
-  },
-  { key: "created_at", name: "Created" },
-  { key: "updated_at", name: "Updated" },
-];
+import { useTranslation } from "react-i18next";
 
 export default function Categories() {
   const [categories, setCategories] = useState([]);
@@ -28,6 +16,20 @@ export default function Categories() {
   const [limit, setLimit] = useState(5);
   const [totalData, setTotalData] = useState();
   const [loding, setLoding] = useState(false);
+  const { t } = useTranslation();
+
+  const headerTable = [
+    {
+      key: "title",
+      name: t("Title"),
+    },
+    {
+      key: "image",
+      name: t("Category Image"),
+    },
+    { key: "created_at", name: t("Created At") },
+    { key: "updated_at", name: t("Updated") },
+  ];
 
   // Get All Categories
   useEffect(() => {
@@ -44,12 +46,12 @@ export default function Categories() {
   return (
     <>
       <div className="p-2">
-        <div className="d-flex align-items-center justify-content-between">
+        <div className="d-flex align-items-center justify-content-between pe-2 my-2">
           <h2 className="title-page text-secondary">
-            Categories Page <FontAwesomeIcon icon={faBoxesStacked} />
+            {t('Categories Page')} <FontAwesomeIcon icon={faBoxesStacked} />
           </h2>
           <Link to="/dashboard/category/add" className="btn btn-primary">
-            Add Category
+            {t('Add Category')}
           </Link>
         </div>
         <TableShow
@@ -63,7 +65,7 @@ export default function Categories() {
           delete={CATEGORY}
           setRender={setRender}
           loding={loding}
-          searchName="title"
+          searchName="Title"
           searchLink={SearchCategory}
         />
       </div>

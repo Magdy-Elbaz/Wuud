@@ -31,11 +31,14 @@ export default function HandleSearch(
   }
 
   useEffect(() => {
-    (search.length > 0 || searchDate.length > 0) && setSearchLoding(true);
-    const debounce = setTimeout(() => {
-      searchLink && search !== "" && handleSearch();
-    }, 500);
-
-    return () => clearTimeout(debounce);
+    if (search !== "" || searchDate !== "") {
+      setSearchLoding(true);
+      const timeSearch = setTimeout(() => {
+        searchLink && handleSearch();
+      }, 500);
+      return () => clearTimeout(timeSearch);
+    } else {
+      setSearchLoding(false);
+    }
   }, [search, searchDate]);
 }

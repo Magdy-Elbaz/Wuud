@@ -9,36 +9,21 @@
 html {
   scrollbar-color: #e1b070 #fffdfd;
   scrollbar-width: thin;
-  scroll-behavior: smooth;
-  /* color: #e5c293; */
+  scroll-behavior: auto !important;
 }
 
 body {
   font-family: "Lato", sans-serif;
+  overflow-x: hidden;
 }
 
 .image-gallery-image {
-  height: 250px ;
-  object-fit: cover; 
+  height: 250px;
+  object-fit: cover;
 }
 
 .h-screen {
-  min-height: calc(100vh - 132px);
-}
-
-.row {
-  height: calc(100vh - 60px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.row .col-12 {
-  width: 100%;
-}
-
-.row .col-6 {
-  width: 50%;
+  min-height: calc(100vh - 134px);
 }
 
 .cursor-pointer {
@@ -46,9 +31,52 @@ body {
 }
 
 .text-succes {
-  color: rgb(27, 243, 27) ;
+  color: rgb(27, 243, 27);
 }
 
 .text-cancle {
   color: rgb(154, 14, 14);
+}
+
+.h-100vh {
+  min-height: 100vh;
+}
+
+/* select BootStrap */
+
+.css-t3ipsp-control {
+  border-color: #e1b070 !important;
+  box-shadow: 0 0 2px #e1b070 !important;
+}
+
+.css-1wy0on6 {
+  background-color: transparent;
+}
+
+.css-13cymwt-control,
+.css-t3ipsp-control {
+  background-color: transparent !important;
+}
+
+.css-1dimb5e-singleValue {
+  color: rgb(151, 146, 146) !important;
+}
+
+.css-b62m3t-container {
+  padding: 0 !important;
+}
+.css-qr46ko {
+  padding: 0 !important;
+}
+
+.css-d7l1ni-option {
+  background-color: #dedcd9 !important;
+}
+
+.css-tr4s17-option {
+  background-color: #e1b070 !important;
+}
+
+.css-1nmdiq5-menu {
+  color: black !important;
 }

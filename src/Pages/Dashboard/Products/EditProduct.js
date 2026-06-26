@@ -7,13 +7,16 @@ import { ADD, CATEGORIES, EDIT, PRODUCT } from "../../../Api/Api";
 import { useNavigate, useParams } from "react-router-dom";
 import Loding from "../../../Components/Loding/Loding";
 import BtnSubmit from "../../../Components/Btn/BtnSubmit";
+import { useTheme } from "../../../Context/ThemeContext";
+import { useTranslation } from "react-i18next";
 
 export default function EditProduct() {
   const { id } = useParams();
   const nav = useNavigate();
+  const { t, i18n } = useTranslation();
   // Form state
   const [form, setForm] = useState({
-    category: "Select Category",
+    category: t("Select Category"),
     title: "",
     description: "",
     price: "",
@@ -31,6 +34,9 @@ export default function EditProduct() {
   const [loding, setLoding] = useState(true);
   const [save, setSave] = useState(false);
   const [idImgServe, setIdImgServe] = useState([]);
+  const [logingDelet, setLogingDelet] = useState(false);
+  const [keyImageDelet, setKeyImageDelet] = useState(0);
+  const theme = useTheme();
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -116,7 +122,9 @@ export default function EditProduct() {
   }
 
   async function handleDeleteImg(key, img) {
+    setLogingDelet(true);
     const idImage = ids.current[key];
+    setKeyImageDelet(key);
     try {
       await Axios.delete(`product-img/${idImage}`);
       setImages((prev) => prev.filter((image) => image !== img));
@@ -124,6 +132,8 @@ export default function EditProduct() {
       renderImage.current--;
     } catch (err) {
       console.log(err);
+    } finally {
+      setLogingDelet(false);
     }
   }
 
@@ -163,13 +173,23 @@ export default function EditProduct() {
             </p>
           </div>
         </div>
-        <Button onClick={() => handleDeleteImg(key, img)} variant="danger">
-          Delete
-        </Button>
+        <div style={{ width: "72px" }}>
+          <Button
+            onClick={() => handleDeleteImg(key, img)}
+            variant="danger"
+            className="w-100"
+          >
+            {logingDelet && keyImageDelet === key ? (
+              <Loding action={true} color="#fff" />
+            ) : (
+              t("Delete")
+            )}
+          </Button>
+        </div>
       </div>
       <div className="custom-progress mt-2">
         <span
-          className="inner-progress"
+          className={`inner-progress ${i18n.language === "ar" ? "ar" : "en"} bg-primary h-100`}
           percent="0%"
           ref={(e) => (progressRef.current[key] = e)}
         ></span>
@@ -206,93 +226,103 @@ export default function EditProduct() {
       </div>
       <div className="p-2">
         <h2 className="title-page text-secondary">
-          Edit Product <FontAwesomeIcon icon={faPenToSquare} />
+          {t("Product Editing Page")} <FontAwesomeIcon icon={faPenToSquare} />
         </h2>
         <Form onSubmit={handleEdit} className="form-dashboard form-product">
           <Form.Group className="mb-3" controlId="categore">
-            <Form.Label>Category :</Form.Label>
+            <Form.Label>{t("Category")} :</Form.Label>
             <Form.Select
               name="category"
               value={form.category}
               onChange={handleChange}
+              className={`${theme === "light" ? "bg-light-card" : "bg-dark-card placeholder-light text-light"}`}
               ref={inputOne}
             >
-              <option disabled>Select Category</option>
+              <option disabled>{t("Select Category")}</option>
               {categoryShow}
             </Form.Select>
           </Form.Group>
           <Form.Group className="mb-3" controlId="title">
-            <Form.Label>Title :</Form.Label>
+            <Form.Label>{t("Title")} :</Form.Label>
             <Form.Control
               type="text"
               name="title"
               value={form.title}
               onChange={handleChange}
-              placeholder="Enter Title ..."
+              placeholder={t("Enter Title")}
+              className={`${theme === "light" ? "bg-light-card" : "bg-dark-card placeholder-light text-light"}`}
               required
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="description">
-            <Form.Label>Description :</Form.Label>
+            <Form.Label>{t("Description")} :</Form.Label>
             <Form.Control
               type="text"
               name="description"
               value={form.description}
               onChange={handleChange}
-              placeholder="Enter Description ..."
+              placeholder={t("Enter Description")}
+              className={`${theme === "light" ? "bg-light-card" : "bg-dark-card placeholder-light text-light"}`}
               required
             />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="price">
-            <Form.Label>Price :</Form.Label>
-            <Form.Control
-              type="text"
-              name="price"
-              value={form.price}
-              onChange={handleChange}
-              placeholder="Enter Price ..."
-              required
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="discount">
-            <Form.Label>Discount :</Form.Label>
-            <Form.Control
-              type="text"
-              name="discount"
-              value={form.discount}
-              onChange={handleChange}
-              placeholder="Enter Discount ..."
-              required
-            />
-          </Form.Group>
+          <div className="d-flex align-items-center gap-3">
+            <Form.Group className="mb-3 w-50" controlId="price">
+              <Form.Label>{t("Price")} :</Form.Label>
+              <Form.Control
+                type="text"
+                name="price"
+                value={form.price}
+                onChange={handleChange}
+                placeholder={t("Enter Price")}
+                className={`${theme === "light" ? "bg-light-card" : "bg-dark-card placeholder-light text-light"}`}
+                required
+              />
+            </Form.Group>
+            <Form.Group className="mb-3 w-50" controlId="discount">
+              <Form.Label>{t("Discount")} :</Form.Label>
+              <Form.Control
+                type="text"
+                name="discount"
+                value={form.discount}
+                onChange={handleChange}
+                placeholder={t("Enter Discount")}
+                className={`${theme === "light" ? "bg-light-card" : "bg-dark-card placeholder-light text-light"}`}
+                required
+              />
+            </Form.Group>
+          </div>
           <Form.Group className="mb-3" controlId="about">
-            <Form.Label>About :</Form.Label>
+            <Form.Label>{t("About")} :</Form.Label>
             <Form.Control
               type="text"
               name="About"
               value={form.About}
               onChange={handleChange}
-              placeholder="Enter About ..."
+              placeholder={t("Enter About")}
+              className={`${theme === "light" ? "bg-light-card" : "bg-dark-card placeholder-light text-light"}`}
               required
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="stock">
-            <Form.Label>Stock :</Form.Label>
+            <Form.Label>{t("Stock")} :</Form.Label>
             <Form.Control
               type="text"
               name="stock"
               value={form.stock}
               onChange={handleChange}
+              className={`${theme === "light" ? "bg-light-card" : "bg-dark-card placeholder-light text-light"}`}
               required
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="image">
-            <Form.Label>Images :</Form.Label>
+            <Form.Label>{t("Product Images")} :</Form.Label>
             <Form.Control
               hidden
               multiple
               type="file"
               onChange={handleImageChange}
+              className={`${theme === "light" ? "bg-light-card" : "bg-dark-card placeholder-light text-light"}`}
               ref={openImage}
             />
           </Form.Group>
@@ -309,7 +339,7 @@ export default function EditProduct() {
               alt=""
               width="100px"
             />
-            <p className="fw-bold text-primary">Upload Images</p>
+            <p className="fw-bold text-primary">{t("Upload Images")}</p>
           </div>
           <div
             style={{ maxHeight: "510px", overflow: "auto" }}
@@ -324,7 +354,7 @@ export default function EditProduct() {
           </div>
           <BtnSubmit
             loding={save}
-            name="Save"
+            name={t("Save")}
             disabled={
               form.title.length <= 3 ||
               form.description === "" ||

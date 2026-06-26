@@ -1,6 +1,5 @@
 .dashboard {
   min-height: 100vh;
-  background-color: #f7f8fa;
 }
 
 .dashboard-body {
@@ -24,16 +23,6 @@
 
 .form-product input {
   padding: 10px;
-}
-
-.icon-eye-dashboard {
-  position: absolute;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 20px;
-  cursor: pointer;
-  color: #aeaeae;
 }
 
 /* Progress */
@@ -86,21 +75,18 @@
   padding: 3px;
   border-radius: 5px;
   top: -22px;
+}
+
+.inner-progress.en::after {
   right: -7px;
 }
 
-.icon-search {
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
+.inner-progress.ar::after {
+  left: -7px;
 }
 
 /* item Overview */
 
-.bg-card-today {
-  background-color: #0382cc;
+.text-card-today {
+  color: #0382cc;
 }

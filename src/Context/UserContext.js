@@ -11,6 +11,7 @@ export default function UserProvider({ children }) {
   const [render, setRender] = useState(false);
   const [showNav, setShowNav] = useState(false);
   const navigate = useNavigate();
+  console.log(user)
 
   useEffect(() => {
     setLodingUser(true);

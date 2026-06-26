@@ -1,5 +1,7 @@
 import { faAward, faLeaf, faPalette } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useTranslation } from "react-i18next";
+import { useTheme } from "../../../Context/ThemeContext";
 
 const data = [
   {
@@ -29,29 +31,35 @@ const data = [
 ];
 
 export default function OurValues() {
-  const showData = data.map((data) => (
-    <div className="ourValues-item p-3 rounded-3">
+  const { t } = useTranslation();
+  const theme = useTheme();
+
+  const showData = data.map((data, key) => (
+    <div
+      key={key}
+      className={`ourValues-item ${theme === "dark" ? "bg-dark-card" : "bg-light-card"} d-flex align-items-center justify-content-between flex-column p-3 rounded-3`}
+      data-aos="fade-up"
+    >
       <div className="d-flex align-items-center justify-content-center">
         <FontAwesomeIcon
           icon={data.icon}
           className="py-3 px-3 text-light bg-primary rounded-circle fs-4 mb-2"
         />
       </div>
-      <h4 className="text-center">{data.name}</h4>
-      <p>{data.description}</p>
-      <h4 className="d-flex align-items-center gap-2">
-        {data.StatsSection} :
-        <span className="fw-bold rounded-circle text-StatsSection text-primary d-flex align-items-center justify-content-center">
+      <h4 className="text-center">{t(data.name)}</h4>
+      <p>{t(data.description)}</p>
+      <h4 className="d-flex align-items-center gap-2 m-0">
+        <span className="mb-2">{t(data.StatsSection)} :</span>
+        <span className={`fw-bold rounded-circle text-StatsSection ${theme === "light" ? "shadow-dark" : "shadow-light"} text-primary d-flex align-items-center justify-content-center`}>
           {data.stats}
         </span>
       </h4>
     </div>
   ));
+
   return (
     <>
-      <h2 className="text-center fw-bold">
-        Our <span className="text-primary">Values</span>
-      </h2>
+      <h2 className="text-center fw-bold">{t("Our Values")} 🤝</h2>
       <div className="d-flex align-items-center justify-content-center gap-5 flex-wrap my-4">
         {showData}
       </div>

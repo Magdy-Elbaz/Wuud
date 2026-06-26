@@ -7,14 +7,7 @@ import { CONTACT, CONTACTS, MESSAGES, REPLY } from "../../Api/Api";
 import { Button, Form, Modal } from "react-bootstrap";
 import BtnSubmit from "../../Components/Btn/BtnSubmit";
 import { useToast } from "../../Context/Toast Notification/ToastNotification";
-
-const header = [
-  { key: "status", name: "Status" },
-  { key: "name", name: "User Name" },
-  { key: "email", name: "Email" },
-  { key: "message", name: "Message" },
-  { key: "created_at", name: "Created" },
-];
+import { useTranslation } from "react-i18next";
 
 export default function Messages() {
   const [messages, setMessages] = useState([]);
@@ -29,6 +22,15 @@ export default function Messages() {
   const [idMessage, setIdMessage] = useState(0);
   const { addToast } = useToast();
   const [replied, setReplied] = useState({ status: "pending", id: "" });
+  const { t } = useTranslation();
+
+  const header = [
+    { key: "status", name: t("Status") },
+    { key: "name", name: t("User Name") },
+    { key: "email", name: t("Email") },
+    { key: "message", name: t("Message") },
+    { key: "created_at", name: t("Created At") },
+  ];
 
   useEffect(() => {
     setLoding(true);
@@ -68,8 +70,8 @@ export default function Messages() {
   return (
     <div className="p-2 overflow-hidden">
       <div className="d-flex align-items-center justify-content-between">
-        <h2 className="title-page text-secondary">
-          Customer Messages <FontAwesomeIcon icon={faMessage} />
+        <h2 className="title-page text-secondary mt-2">
+          {t("Customer Messages")} <FontAwesomeIcon icon={faMessage} />
         </h2>
       </div>
       <div className="mt-4">
@@ -91,23 +93,23 @@ export default function Messages() {
       </div>
       <Modal show={showModal} onHide={handleChangeShowModal}>
         <Modal.Header closeButton>
-          <Modal.Title>Delete All</Modal.Title>
+          <Modal.Title>{t("Delete All")}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form.Control
             type="text"
-            placeholder="Reply to the message"
+            placeholder={t("Reply to the message")}
             value={reply}
             onChange={(e) => setReply(e.target.value)}
           />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleChangeShowModal}>
-            Close
+            {t("Close")}
           </Button>
           <div onClick={handleSendMessage}>
             <BtnSubmit
-              name="Send"
+              name={t("Send")}
               width="60px"
               loding={lodingReply}
               disabled={reply.length < 5}

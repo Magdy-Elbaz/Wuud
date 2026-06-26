@@ -22,6 +22,8 @@ import {
   faEnvelopeOpen,
 } from "@fortawesome/free-regular-svg-icons";
 import "./table.css";
+import { useTheme } from "../../../Context/ThemeContext";
+import { useTranslation } from "react-i18next";
 
 export default function TableShow(props) {
   // Global State
@@ -33,17 +35,17 @@ export default function TableShow(props) {
   const [searchLoding, setSearchLoding] = useState(false);
   const [lodingStatus, setLodingStatus] = useState({});
   const { addToast } = useToast();
+  const theme = useTheme();
+  const { t, i18n } = useTranslation();
 
   const showSearchDate = filteredData.slice(
     (props.page - 1) * props.limit,
     props.page * props.limit,
   );
   const showWhichData =
-    search.length > 0 || searchDate.length > 0 ? showSearchDate : props.data;
+    search !== "" || searchDate !== "" ? showSearchDate : props.data;
   const total =
-    search.length === 0 && searchDate.length === 0
-      ? props.totalData
-      : filteredData.length;
+    search === "" && searchDate === "" ? props.totalData : filteredData.length;
 
   const pendingOrders = showWhichData?.filter(
     (item) => item.status === "pending",
@@ -141,7 +143,9 @@ export default function TableShow(props) {
   const dataShow = showWhichData?.map((item, key) => (
     <tr key={key}>
       {props.Interactions === "orders" && (
-        <td>
+        <td
+          className={`${theme === "light" ? "bg-light-card" : "bg-dark-card text-light"}`}
+        >
           <Form.Check
             type="checkbox"
             checked={
@@ -155,20 +159,25 @@ export default function TableShow(props) {
           />
         </td>
       )}
-      <td>
+      <td
+        className={`${theme === "light" ? "bg-light-card" : "bg-dark-card  text-light"}`}
+      >
         {props.Interactions
           ? item.id
           : key + 1 + (props.page - 1) * props.limit}
       </td>
       {props.header.map((head, index) => (
-        <td key={index}>
+        <td
+          key={index}
+          className={`${theme === "light" ? "bg-light-card" : "bg-dark-card  text-light"}`}
+        >
           {/* التعامل مع الصور */}
           {head.key === "image" || head.key === "avatar" ? (
             <img
               width={head.key === "avatar" ? "40px" : "50px"}
               height={head.key === "avatar" ? "40px" : "50px"}
               src={item[head.key]}
-              className={`${head.key === "avatar" && "rounded-circle"}`}
+              className={`${head.key === "avatar" && "icon-user"}`}
               alt=""
             />
           ) : head.key === "images" ? (
@@ -188,34 +197,42 @@ export default function TableShow(props) {
             </div>
           ) : /* التعامل مع التواريخ */
           head.key === "created_at" || head.key === "updated_at" ? (
-            TransformDate(item[head.key])
+            TransformDate(item[head.key], i18n.language === "ar" && "ar")
           ) : /* تحويل ال role الي نص*/
           head.key === "role" ? (
             item[head.key] === "1995" ? (
-              "Admin"
+              t("Admin")
             ) : item[head.key] === "2001" ? (
-              "User"
+              t("User")
             ) : (
-              "Writer"
+              t("Product Manger")
             )
           ) : head.key === "total_price" ? (
-            item[head.key] + " EGP"
+            item[head.key] + " " + t("EGP")
+          ) : head.key === "name" ? (
+            <div className="text-capitalize">
+              {item[head.key] || item["first_name"] + " " + item["last_name"]}
+            </div>
           ) : head.key === "status" ? (
             <div className="d-flex align-items-center gap-1">
               <span
                 className={`border border-2 ${item[head.key] === "pending" ? "bg-warning" : "bg-success"} rounded-circle`}
                 style={{ width: "15px", height: "15px" }}
               />
-              {item[head.key] === "pending" ? "New" : "Replied"}
+              {item[head.key] === "pending" ? t("New") : t("Replied")}
             </div>
           ) : (
             item[head.key]
           )}
-          {currentUser && item[head.key] === currentUser.email && " (You)"}
+          {currentUser &&
+            item[head.key] === currentUser.email &&
+            ` (${t("You")})`}
         </td>
       ))}
       {props.Interactions !== "orders" ? (
-        <td>
+        <td
+          className={`${theme === "light" ? "bg-light-card" : "bg-dark-card  text-light"}`}
+        >
           <div className="d-flex align-items-center gap-2">
             {props.Interactions !== "messages" ? (
               <Link to={`${item.id}`}>
@@ -241,7 +258,7 @@ export default function TableShow(props) {
             {currentUser.email !== item.email &&
               (item.id === id ? (
                 lodingDelet ? (
-                  <Loding action={true} />
+                  <Loding action={true} primaryLoding={true} />
                 ) : (
                   <FontAwesomeIcon
                     onClick={() => handleDelete(item.id)}
@@ -263,28 +280,30 @@ export default function TableShow(props) {
           </div>
         </td>
       ) : (
-        <td className="p-2">
+        <td
+          className={`${theme === "light" ? "bg-light-card" : "bg-dark-card  text-light"} p-2`}
+        >
           <div className="d-flex align-items-center justify-content-center gap-2">
-            <p
-              className={`m-0 opacity-75 text-center p-1 rounded-4 col-10 col-md-6 ${getStatusStyle(item.status)}`}
+            <span
+              className={`m-0 opacity-75 text-center p-1 w-75 rounded-4 col-10 col-md-6 ${getStatusStyle(item.status)}`}
             >
               {item.status === "canceled" ? (
                 <div>
-                  canceled
+                  {t("Canceled")}
                   <FontAwesomeIcon icon={faXmark} />
                 </div>
               ) : item.status === "confirmed" ? (
                 <div>
                   <FontAwesomeIcon icon={faCheck} />
-                  confirmed
+                  {t("Confirmed")}
                 </div>
               ) : (
                 <div>
                   <FontAwesomeIcon icon={faClock} />
-                  Pending
+                  {t("Pending")}
                 </div>
               )}
-            </p>
+            </span>
             {item.status === "pending" && (
               <div className="d-flex gap-2">
                 {!props.userOrder && (
@@ -294,7 +313,7 @@ export default function TableShow(props) {
                   >
                     {lodingStatus.status === "confirmed" &&
                     lodingStatus.id === item.id ? (
-                      <Loding action={true} color="#fff" />
+                      <Loding action={true} />
                     ) : (
                       <FontAwesomeIcon icon={faCheck} />
                     )}
@@ -306,7 +325,7 @@ export default function TableShow(props) {
                 >
                   {lodingStatus.status === "canceled" &&
                   lodingStatus.id === item.id ? (
-                    <Loding action={true} color="#fff" />
+                    <Loding action={true} />
                   ) : (
                     <FontAwesomeIcon icon={faXmark} />
                   )}
@@ -322,28 +341,32 @@ export default function TableShow(props) {
     <>
       {props.searchLink && (
         <div className="d-flex align-items-center gap-4 mb-3 mt-3">
-          <div className="d-flex w-50 align-content-center position-relative">
+          <div
+            className="d-flex w-50 align-content-center position-relative"
+            data-aos={i18n.language === "ar" ? "fade-left" : "fade-right"}
+          >
             <Form.Control
               type="input-search"
-              placeholder={`Search By ${props.searchName}...`}
-              className="px-2"
+              placeholder={t(`Search By ${props.searchName}`)}
+              className={`px-2 ${theme === "light" ? "bg-light-card" : "bg-dark-card placeholder-light  text-light"}`}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
             <FontAwesomeIcon
               icon={faMagnifyingGlass}
-              className="icon-search position-absolute"
+              className={`icon-search ${i18n.language === "ar" ? "ar" : "en"} position-absolute`}
             />
           </div>
           <Form.Control
             type="date"
-            className="px-2 w-50"
+            className={`px-2 w-50 ${theme === "light" ? "bg-light-card" : "bg-dark-card placeholder-light text-light"}`}
             value={searchDate}
             onChange={(e) => SetSearchDate(e.target.value)}
+            data-aos={i18n.language === "ar" ? "fade-right" : "fade-left"}
           />
         </div>
       )}
-      <div className="rounded-4 table-responsive">
+      <div className="rounded-4 table-responsive" data-aos="fade-up">
         <Table striped bordered hover className="m-0">
           <thead>
             <tr>
@@ -362,46 +385,64 @@ export default function TableShow(props) {
                         pendingOrders.length !== 0 ? "pointer" : "not-allowed",
                     }}
                   />
-                  Select All
+                  {t("Select All")}
                 </th>
               )}
               <th className="bg-primary text-light">
                 {props.Interactions
                   ? props.Interactions === "orders"
-                    ? "Order ID"
-                    : "Message ID"
-                  : "id"}
+                    ? t("Order ID")
+                    : t("Message ID")
+                  : t("ID")}
               </th>
               {headerShow}
               <th className="bg-primary text-light">
                 {props.Interactions === "orders"
-                  ? "Condition & Control"
-                  : "Action"}
+                  ? t("Condition & Control")
+                  : t("Action")}
               </th>
             </tr>
           </thead>
           <tbody>
             {props.loding || searchLoding ? (
               <tr>
-                <td colSpan={12}>
+                <td
+                  colSpan={12}
+                  className={`${theme === "light" ? "bg-light-card" : "bg-dark-card  text-light"}`}
+                >
                   <div className="d-flex justify-content-center gap-2 align-items-center position-relative">
-                    <h6>{props.loding ? "Loding" : "Searching"}</h6>
+                    <h6>{props.loding ? t("Loding") : t("Searching")}</h6>
                     <p className="m-0 loding-teble">
                       <span
                         id="sp-1"
-                        style={{ left: searchLoding ? "52.5%" : "52%" }}
+                        style={{
+                          [i18n.language === "ar" ? "right" : "left"]:
+                            searchLoding || i18n.language === "ar"
+                              ? "52.5%"
+                              : "52%",
+                        }}
                       >
                         .
                       </span>
                       <span
                         id="sp-2"
-                        style={{ left: searchLoding ? "53%" : "52.5%" }}
+                        style={{
+                          [i18n.language === "ar" ? "right" : "left"]:
+                            searchLoding || i18n.language === "ar"
+                              ? "53%"
+                              : "52.5%",
+                        }}
                       >
                         .
                       </span>
                       <span
                         id="sp-3"
-                        style={{ left: searchLoding ? "53.5%" : "53%" }}
+                        style={{
+                          [i18n.language === "ar" ? "right" : "left"]:
+                            searchLoding || i18n.language === "ar"
+                              ? "53.5%"
+                              : "53%",
+                        }}
                       >
                         .
                       </span>
@@ -411,8 +452,11 @@ export default function TableShow(props) {
               </tr>
             ) : dataShow?.length === 0 ? (
               <tr>
-                <td colSpan={12} className="text-center text-secondary">
-                  Nothing was found
+                <td
+                  colSpan={12}
+                  className={`text-center text-secondary ${theme === "light" ? "bg-light-card" : "bg-dark-card  text-light"}`}
+                >
+                  {t("Nothing was found")}
                 </td>
               </tr>
             ) : (

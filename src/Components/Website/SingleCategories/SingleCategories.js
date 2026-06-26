@@ -2,24 +2,44 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Axios } from "../../../Api/Axios";
 import { CATEGORY, PRODUCTS } from "../../../Api/Api";
-import ProductItem from "../Home/Products/ProductItem";
+import ProductItem from "../Home/Products/ProductItem/ProductItem";
 import SkeletonPage from "../SkeletonPage";
+import PageHeader from "../PageHeader";
+import { Container } from "react-bootstrap";
+import BtnSeeMore from "../../Btn/BtnSeeMore/BtnSeeMore";
+import NoSearch from "../NoSearch";
 
 export default function SingleCategories() {
   const { id } = useParams();
+  const [search, setSearch] = useState("");
+  const [selectedOption, setSelectedOption] = useState({
+    value: "newest",
+    label: "Newest",
+  });
   const [nameCatigory, setNameCatigory] = useState("");
   const [products, setProducts] = useState([]);
-  const [loding, setLoding] = useState(false);
+  const [loding, setLoding] = useState(true);
+  const [limit, setLimit] = useState(16);
+  const [totalProducts, setTotalProducts] = useState(0);
+  const [lodingSeeMore, setLodingeeMore] = useState(false);
 
   useEffect(() => {
-    setLoding(true);
-    Axios.get(`${CATEGORY}/${id}/${PRODUCTS}`)
-      .then((data) => {
-        setNameCatigory(data.data.category);
-        setProducts(data.data.products);
-      })
-      .finally(() => setLoding(false));
-  }, [id]);
+    if (search === "") {
+      !lodingSeeMore && setLoding(true);
+      Axios.get(
+        `${CATEGORY}/${id}/${PRODUCTS}?sort=${selectedOption.value}&&limit=${limit}`,
+      )
+        .then((data) => {
+          setNameCatigory(data.data.category_title);
+          setProducts(data.data.products);
+          setTotalProducts(data.data.total_products);
+        })
+        .finally(() => {
+          setLoding(false);
+          setLodingeeMore(false);
+        });
+    }
+  }, [id, limit, selectedOption, search]);
 
   const showProducts = products.map((pro, key) => (
     <ProductItem data={pro} key={key} col={true} sale={true} />
@@ -27,23 +47,51 @@ export default function SingleCategories() {
 
   return (
     <div className="h-screen">
-      {loding ? (
-        <div className="mt-5">
-          <div className="mb-3">
-            <SkeletonPage number={1} width="500px" height="64px" />
+      <Container>
+        <PageHeader
+          title="Category"
+          search={search}
+          setSearch={setSearch}
+          selectedOption={selectedOption}
+          setSelectedOption={setSelectedOption}
+          setLoding={setLoding}
+          setData={setProducts}
+          setTotalCategories={setTotalProducts}
+          limit={limit}
+        />
+        {loding ? (
+          <div className="my-5">
+            <div className="mb-3">
+              <SkeletonPage number={1} width="250px" height="64px" />
+            </div>
+            <SkeletonPage
+              number={16}
+              width="252.5px"
+              height="350px"
+              wrap={true}
+              gap="gap-5"
+            />
           </div>
-          <SkeletonPage number={5} width="252.5px" height="350px" wrap={true} />
-        </div>
-      ) : (
-        <>
-          <h1 className="d-flex justify-content-center mt-5 gap-2">
-            Category: <p className="text-primary fw-bold">{nameCatigory}</p>
-          </h1>
-          <div className="d-flex align-items-center justify-content-center gap-3 flex-wrap">
-            {showProducts}
+        ) : (
+          <div className="my-5">
+            <h2 className="text-center">{nameCatigory}</h2>
+            <div className="d-flex align-items-center justify-content-center">
+              <hr className="my-3 w-50" />
+            </div>
+            <div className="d-flex align-items-center justify-content-center gap-5 flex-wrap">
+              {products.length === 0 ? <NoSearch /> : showProducts}
+            </div>
+            {products.length < totalProducts && (
+              <BtnSeeMore
+                setLimit={setLimit}
+                setLodingeeMore={setLodingeeMore}
+                lodingSeeMore={lodingSeeMore}
+                singleCategory={true}
+              />
+            )}
           </div>
-        </>
-      )}
+        )}
+      </Container>
     </div>
   );
 }

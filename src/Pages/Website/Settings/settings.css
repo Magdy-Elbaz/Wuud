@@ -1,0 +1,55 @@
+.edit {
+    background-color: rgba(0,0,0,0.5);
+    z-index: 10;
+    top: 0;
+    left: 0;
+}
+
+.icon_editAvatar {
+    position: absolute;
+    bottom: 8px;
+    right: 15px;
+}
+
+.click-Close {
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.radio_dark {
+    background: url(../../../Assets/moon.png) center/cover;
+}
+
+.radio_light {
+    position: relative;
+    background: url(../../../Assets/sun.png) center/cover;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.radio_light::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.3);
+    z-index: -1;
+}
+
+.form-check-input[type="radio"] {
+  border-color: #d3b286 !important;
+  cursor: pointer !important;
+}
+
+.form-check-input[type="radio"]:checked {
+  background-color: #d5af7e !important;
+  border-color: #e5c293 !important;
+}
+
+.form-check-input:focus {
+  border-color: #e5c293 !important;
+  box-shadow: 0 0 0 0.25rem rgba(229, 194, 147, 0.25) !important;
+}

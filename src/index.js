@@ -13,6 +13,8 @@ import WindowProvider from "./Context/WindowContext";
 import ChangeAllProvider from "./Context/ChangeAllContext";
 import ToastProvider from "./Context/Toast Notification/ToastNotification";
 import UserProvider from "./Context/UserContext";
+import ThemeProvider from "./Context/ThemeContext";
+import "./Components/i18n";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -23,7 +25,9 @@ root.render(
           <WindowProvider>
             <ChangeAllProvider>
               <UserProvider>
-                <App />
+                <ThemeProvider>
+                  <App />
+                </ThemeProvider>
               </UserProvider>
             </ChangeAllProvider>
           </WindowProvider>

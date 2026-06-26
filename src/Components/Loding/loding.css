@@ -1,8 +1,7 @@
 .spinner-countiner {
   position: fixed;
   width: 100%;
-  height: 100vh;
-  background-color: #ececec;
+  min-height: 100vh;
   top: 0;
   transition: 0.3s;
   z-index: 100;

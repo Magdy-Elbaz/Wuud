@@ -22,14 +22,15 @@
 
 .ourValues-item {
   width: 330px;
+  height: 245px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .text-StatsSection {
-  width: 37px;
-  height: 37px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  font-size: 12px;
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  font-size: 13px;
 }
 
 /* Timeline */
@@ -58,7 +59,7 @@
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
-  top: -30%;
+  top: -44.9%;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
@@ -88,6 +89,10 @@
     left: 15%;
   }
 
+  .timeline.ar::before {
+    right: 15%;
+  }
+
   .timeline-content {
     width: 280px;
   }
@@ -101,9 +106,22 @@
     left: -9.5%;
   }
 
+  .timeline-content.ar::before {
+    right: -16.5%;
+  }
+
   .timeline-content::after {
     left: -3%;
     border-width: 8px;
+    width: 0;
     border-color: transparent #f0ebe1 transparent transparent;
+  }
+
+  .timeline-content.ar::after {
+    position: absolute;
+    right: -9%;
+    left: 0;
+    border-width: 8px;
+    border-color: transparent transparent  transparent #f0ebe1 ;
   }
 }

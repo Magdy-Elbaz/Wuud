@@ -5,12 +5,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCloudArrowDown } from "@fortawesome/free-solid-svg-icons";
 import { Axios } from "../../Api/Axios";
 import { useToast } from "../../Context/Toast Notification/ToastNotification";
+import { useTranslation } from "react-i18next";
 
 export default function BtnsOrders(props) {
   const [lodingExcel, setLodingExcel] = useState(false);
   const [lodingConfirmed, setLodingConfirmed] = useState(false);
   const [lodingCancel, setLodingCancel] = useState(false);
   const { addToast } = useToast();
+  const { t } = useTranslation();
 
   async function handleExportExcel() {
     setLodingExcel(true);
@@ -65,7 +67,7 @@ export default function BtnsOrders(props) {
     <div className="d-flex align-items-center justify-content-between flex-wrap gap-3 mb-3">
       {!props.noBtnExcel && (
         <button
-          className="btn btn-success"
+          className="btn btn-success d-flex align-items-center text-nowrap gap-2 px-2"
           onClick={handleExportExcel}
           style={{ width: "154px" }}
         >
@@ -73,12 +75,12 @@ export default function BtnsOrders(props) {
             <Loding action={true} color={"#fff"} />
           ) : (
             <>
-              Export to Excel <FontAwesomeIcon icon={faCloudArrowDown} />
+              {t("Export to Excel")} <FontAwesomeIcon icon={faCloudArrowDown} />
             </>
           )}
         </button>
       )}
-      <div className="d-flex align-items-center gap-2">
+      <div className="d-flex align-items-center gap-2" data-aos="fade-left">
         {!props.pageOrderUser && (
           <button
             className="btn btn-success"
@@ -89,7 +91,7 @@ export default function BtnsOrders(props) {
             {lodingConfirmed ? (
               <Loding action={true} color="#fff" />
             ) : (
-              `Confirmed on ${props.selectedIds.length}`
+              `${t("Confirm on")} ${props.selectedIds.length}`
             )}
           </button>
         )}
@@ -103,7 +105,7 @@ export default function BtnsOrders(props) {
             <Loding action={true} color="#fff" />
           ) : (
             `
-          Cancel on ${props.selectedIds.length}`
+          ${t("Cancel on")} ${props.selectedIds.length}`
           )}
         </button>
       </div>

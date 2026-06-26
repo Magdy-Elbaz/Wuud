@@ -2,7 +2,7 @@
   background-color: #5c473c;
   color: #f4e4d4;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .box-container {

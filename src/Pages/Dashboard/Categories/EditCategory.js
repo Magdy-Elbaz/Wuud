@@ -7,6 +7,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import Loding from "../../../Components/Loding/Loding";
 import { faSquarePen } from "@fortawesome/free-solid-svg-icons";
 import BtnSubmit from "../../../Components/Btn/BtnSubmit";
+import { useTheme } from "../../../Context/ThemeContext";
+import { useTranslation } from "react-i18next";
 
 export default function EditCategory() {
   // category
@@ -19,6 +21,8 @@ export default function EditCategory() {
   const [loding, setLoding] = useState(true);
   const [save, setSave] = useState(false);
   const nav = useNavigate();
+  const theme = useTheme();
+  const { t } = useTranslation();
 
   async function Submit(e) {
     e.preventDefault();
@@ -66,30 +70,32 @@ export default function EditCategory() {
       ) : (
         <div className="p-2">
           <h2 className="title-page text-secondary">
-            Edit Category <FontAwesomeIcon icon={faSquarePen} />
+            {t('Category Editing Page')} <FontAwesomeIcon icon={faSquarePen} />
           </h2>
           <Form onSubmit={Submit} className="form-dashboard">
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Name :</Form.Label>
+              <Form.Label>{t('Title')} :</Form.Label>
               <Form.Control
                 type="text"
                 value={category.title}
                 onChange={(e) =>
                   setCategory({ ...category, title: e.target.value })
                 }
-                placeholder="Enter Title ..."
+                className={`${theme === "light" ? "bg-light-card" : "bg-dark-card placeholder-light text-light"}`}
+                placeholder={t("Enter Title")}
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
-              <Form.Label>Image :</Form.Label>
+              <Form.Label>{t('Category Image')} :</Form.Label>
               <Form.Control
                 type="file"
                 onChange={(e) =>
                   setCategory({ ...category, image: e.target.files.item(0) })
                 }
+                className={`${theme === "light" ? "bg-light-card" : "bg-dark-card placeholder-light text-light"}`}
               />
             </Form.Group>
-            <BtnSubmit loding={save} name="Save" disabled={disabled} />
+            <BtnSubmit loding={save} name={t("Save")} disabled={disabled} />
           </Form>
         </div>
       )}

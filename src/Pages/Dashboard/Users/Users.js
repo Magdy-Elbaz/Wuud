@@ -6,15 +6,7 @@ import { Axios } from "../../../Api/Axios";
 import { Link } from "react-router-dom";
 import TableShow from "../../../Components/Dashboard/Table/Table";
 import { useUser } from "../../../Context/UserContext";
-
-const headerTable = [
-  { key: "avatar", name: "Image" },
-  { key: "name", name: "UserName" },
-  { key: "email", name: "Email" },
-  { key: "role", name: "Role" },
-  { key: "created_at", name: "Created" },
-  { key: "updated_at", name: "Last Login" },
-];
+import { useTranslation } from "react-i18next";
 
 export default function Users() {
   // Users
@@ -27,6 +19,16 @@ export default function Users() {
   const [totalData, setTotalData] = useState();
   const [loding, setLoding] = useState(false);
   const { user } = useUser();
+  const { t } = useTranslation();
+
+  const headerTable = [
+    { key: "avatar", name: t("Avatar") },
+    { key: "name", name: t("User Name") },
+    { key: "email", name: t("Email") },
+    { key: "role", name: t("Role") },
+    { key: "created_at", name: t("Created At") },
+    { key: "updated_at", name: t("Last Login") },
+  ];
 
   // Get All Users
   useEffect(() => {
@@ -43,12 +45,12 @@ export default function Users() {
   return (
     <>
       <div className="p-2 overflow-hidden">
-        <div className="d-flex align-items-center justify-content-between">
+        <div className="d-flex align-items-center justify-content-between pe-2 my-2">
           <h2 className="title-page text-secondary">
-            Users Page <FontAwesomeIcon icon={faUsers} />
+            {t('Users Page')} <FontAwesomeIcon icon={faUsers} />
           </h2>
           <Link to="/dashboard/user/add" className="btn btn-primary">
-            Add User
+            {t('Add User')}
           </Link>
         </div>
         <TableShow
@@ -63,7 +65,7 @@ export default function Users() {
           currentUser={user}
           setRender={setRender}
           loding={loding}
-          search="name"
+          searchName="Name"
           searchLink={SearchUser}
         />
       </div>

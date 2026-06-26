@@ -4,9 +4,8 @@ import { Container } from "react-bootstrap";
 
 export default function Err404() {
   return (
-    <div className="error-container">
-      <Container>
-        <div className="row justify-content-center">
+    <div className="error-container d-flex align-items-center justify-content-center">
+      <Container className="d-flex align-items-center justify-content-center">
           <div className="col-md-9 col-lg-7">
             <div className="box-container">
               <div className="error-code text-primary">404</div>
@@ -20,7 +19,6 @@ export default function Err404() {
               </Link>
             </div>
           </div>
-        </div>
       </Container>
     </div>
   );

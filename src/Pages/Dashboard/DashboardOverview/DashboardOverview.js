@@ -4,14 +4,8 @@ import { Stats } from "../../../Api/Api";
 import ItemOverview from "./ItemOverview";
 import TableShow from "../../../Components/Dashboard/Table/Table";
 import BtnsOrders from "../../../Components/Btn/BtnsOrders";
-
-const header = [
-  { key: "customer_name", name: "User Name" },
-  { key: "product_names", name: "Product Name" },
-  { key: "image", name: "Image Product" },
-  { key: "total_price", name: "Total Price" },
-  { key: "created_at", name: "Created" },
-];
+import { useTheme } from "../../../Context/ThemeContext";
+import { useTranslation } from "react-i18next";
 
 export default function DashboardOverview() {
   const [orders, setOrders] = useState([]);
@@ -19,6 +13,16 @@ export default function DashboardOverview() {
   const [loding, setLoding] = useState(false);
   const [selectedIds, setSelectedIds] = useState([]);
   const [recentOrders, setRecentOrders] = useState([]);
+  const theme = useTheme();
+  const { t } = useTranslation();
+
+  const header = [
+    { key: "customer_name", name: t("User Name") },
+    { key: "product_names", name: t("Product Name") },
+    { key: "image", name: t("Image Product") },
+    { key: "total_price", name: t("Total Price") },
+    { key: "created_at", name: t("Created At") },
+  ];
 
   useEffect(() => {
     setLoding(true);
@@ -36,10 +40,9 @@ export default function DashboardOverview() {
         <ItemOverview data={orders} loding={loding} />
       </div>
       <div
-        style={{ backgroundColor: "#fff" }}
-        className="mx-2 mt-3 p-2 px-3 rounded-4"
+        className={`mx-2 ${theme === "light" ? "bg-light-card" : "bg-dark-card"} shadow mt-3 p-2 px-3 rounded-4`}
       >
-        <h2 className="m-0 fw-bold">Latest orders</h2>
+        <h2 className="m-0 fw-bold">{t('Latest orders')}</h2>
         <hr />
         <BtnsOrders
           selectedIds={selectedIds}

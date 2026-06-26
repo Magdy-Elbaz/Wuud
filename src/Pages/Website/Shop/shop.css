@@ -1,0 +1,20 @@
+.form-floating input::placeholder {
+  color: #e1b070 !important;
+}
+
+.form-floating input:focus {
+  box-shadow: 0 0 10px #e1b070 !important;
+}
+
+/* select shop */
+
+.css-b62m3t-container {
+  padding: 5px 10px;
+  width: 230px;
+}
+
+@media (max-width: 768px) {
+  .css-b62m3t-container {
+    width: 155px;
+  }
+}

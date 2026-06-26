@@ -6,14 +6,7 @@ import { Axios } from "../../Api/Axios";
 import { ORDERS, SearchOrder } from "../../Api/Api";
 import BtnsOrders from "../../Components/Btn/BtnsOrders";
 import FilterChips from "../../Components/FilterChips";
-
-const header = [
-  { key: "customer_name", name: "User Name" },
-  { key: "product_names", name: "Product Name" },
-  { key: "image", name: "Image Product" },
-  { key: "total_price", name: "Total Price" },
-  { key: "created_at", name: "Created" },
-];
+import { useTranslation } from "react-i18next";
 
 export default function Orders() {
   const [orders, setOrders] = useState([]);
@@ -24,6 +17,15 @@ export default function Orders() {
   const [loding, setLoding] = useState(false);
   const [selectedIds, setSelectedIds] = useState([]);
   const [filterChips, setFilterChips] = useState("All");
+  const { t } = useTranslation();
+
+  const header = [
+    { key: "customer_name", name: t("User Name") },
+    { key: "product_names", name: t("Product Name") },
+    { key: "image", name: t("Image Product") },
+    { key: "total_price", name: t("Total Price") },
+    { key: "created_at", name: t("Created At") },
+  ];
 
   // Get All Orders
   useEffect(() => {
@@ -39,9 +41,9 @@ export default function Orders() {
 
   return (
     <div className="p-2 overflow-hidden">
-      <div className="d-flex align-items-center justify-content-between">
+      <div className="d-flex align-items-center justify-content-between my-2">
         <h2 className="title-page text-secondary">
-          Orders Page <FontAwesomeIcon icon={faTruckRampBox} />
+          {t('Orders Page')} <FontAwesomeIcon icon={faTruckRampBox} />
         </h2>
       </div>
       <div className="mt-4">
@@ -71,7 +73,7 @@ export default function Orders() {
         Interactions={"orders"}
         setSelectedIds={setSelectedIds}
         selectedIds={selectedIds}
-        searchName="name"
+        searchName="Name"
         searchLink={SearchOrder}
       />
     </div>

@@ -1,79 +1,82 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import StringSlice from "../../helpers/StringSlice";
-import { faPen } from "@fortawesome/free-solid-svg-icons";
-import { Form } from "react-bootstrap";
-import { useRef } from "react";
 import { useUser } from "../../Context/UserContext";
+import TransformDate from "../../helpers/TransformDate";
+import { useTheme } from "../../Context/ThemeContext";
+import { useTranslation } from "react-i18next";
 
 export default function TopProfile(props) {
-  const openImage = useRef(null);
+  const { user } = useUser();
+  const theme = useTheme();
+  const { t, i18n } = useTranslation();
 
-  function handleEditAvatar() {
-    openImage.current.click();
-  }
-
-  const {user} = useUser()
+  const role =
+    user.role === "1995"
+      ? "Admin"
+      : user.role === "1999"
+        ? "Product Manger"
+        : "User";
 
   return (
     <div className="w-100">
-      <div className="d-flex align-items-center gap-2">
-        <div
-          className={`position-relative ${props.editUser && "cursor-pointer"}`}
-          onClick={props.editUser && handleEditAvatar}
-        >
+      <div className="d-flex align-items-center h-100 gap-2">
+        <div className={`position-relative`}>
           {user.length === 0 ? (
             <img
               src={require(`../../Assets/user-icon.png`)}
               className="icon-user"
+              width={props.settings ? "70px" : "50px"}
+              height={props.settings ? "70px" : "50px"}
               alt=""
+              data-aos={props.settings && "fade-right"}
             />
           ) : (
             <img
               src={!props.image ? user.avatar : props.image}
               className="icon-user rounded-circle"
+              width={props.settings ? "70px" : "50px"}
+              height={props.settings ? "70px" : "50px"}
               alt=""
-            />
-          )}
-          {props.editUser && (
-            <FontAwesomeIcon
-              icon={faPen}
-              className="position-absolute"
-              style={{
-                bottom: "0",
-                right: "-5px",
-              }}
+              data-aos={props.settings && "fade-right"}
             />
           )}
         </div>
         <div className="flex-grow-1">
           <div className="d-flex align-items-center justify-content-between w-100">
-            <div className="d-flex align-items-center gap-2">
-              <h5 className="m-0">
-                {StringSlice(user.name || "User Name", 8)}
+            <div className="d-flex align-items-center flex-wrap gap-2">
+              <h5
+                className="m-0 text-capitalize"
+                data-aos={props.settings && "fade-down"}
+              >
+                {props.settings
+                  ? user.length !== 0
+                    ? user.first_name + " " + user.last_name
+                    : "User Name"
+                  : StringSlice(
+                      user.length !== 0
+                        ? user.first_name
+                        : "User Name",
+                      10,
+                    )}
               </h5>
-              <span className="condition bg-primary text-light">
-                {props.role}
+              <span
+                className="condition bg-primary text-light"
+                data-aos={props.settings && "fade-down"}
+              >
+                {t(StringSlice(role, 10))}
               </span>
             </div>
             <button
-              className={`btn ${props.editUser ? "fs-4 fw-bold p-0" : "btn-close"}`}
-              onClick={() => props.setOpenProfile(false)}
-            >
-              {props.editUser && ">"}
-            </button>
+              className={`btn ${props.settings ? "d-none" : `btn-close ${theme === "dark" && "bg-light"}`} mx-2`}
+              onClick={() => (props.menuRef.current.style.display = "none")}
+            />
           </div>
-          <p className="m-0">{StringSlice(user.email || "Email", 20)}</p>
+          <p className="m-0" data-aos={props.settings && "fade-up"}>
+            {props.settings
+              ? `${t("Joining date")} : ${user.length !== 0 ? TransformDate(user.created_at, i18n.language) : "-"}`
+              : StringSlice(user.email || "Email", 20)}
+          </p>
         </div>
       </div>
-      <Form.Group className="mb-3" controlId="image">
-        <Form.Control
-          hidden
-          multiple
-          type="file"
-          onChange={(e) => props.setImage(e.target.files[0])}
-          ref={openImage}
-        />
-      </Form.Group>
     </div>
   );
 }
