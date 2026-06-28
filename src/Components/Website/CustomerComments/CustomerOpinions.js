@@ -40,7 +40,7 @@ export default function CustomerOpinions({ product, commentsHome, id }) {
     Axios.get(`${!commentsHome ? `${Reviews}/${id}` : LatestReviews}`)
       .then((review) => setReviews(review.data))
       .finally(() => setLoding(false));
-  }, [isChange, id]);
+  }, [isChange, id, commentsHome]);
 
   async function handlePublish() {
     if (comment !== "") {
@@ -100,9 +100,9 @@ export default function CustomerOpinions({ product, commentsHome, id }) {
               </div>
               <small className="text-muted">
                 {formatDistanceToNow(new Date(review.created_at), {
-                locale: i18n.language === "ar" ? ar : undefined,
-                addSuffix: true,
-              })}
+                  locale: i18n.language === "ar" ? ar : undefined,
+                  addSuffix: true,
+                })}
               </small>
               <p>"{StringSlice(review.comment, commentsHome && 60)}"</p>
             </div>
@@ -176,7 +176,9 @@ export default function CustomerOpinions({ product, commentsHome, id }) {
           </div>
           <Form
             as={"textarea"}
-            placeholder={t("What are your feelings towards this piece of furniture?")}
+            placeholder={t(
+              "What are your feelings towards this piece of furniture?",
+            )}
             className={`w-75 p-2 mb-3 ${theme === "light" ? "bg-light-card" : "bg-dark-card text-light"} rounded-3`}
             style={{ minHeight: "90px" }}
             value={comment}

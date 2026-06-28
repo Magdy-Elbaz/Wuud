@@ -8,7 +8,7 @@ export default function ThemeProvider({ children }) {
   const { isChange } = useContext(ChangeAlContext);
 
   useEffect(() => {
-    const local = window.localStorage.getItem("theme");
+    const local = window.localStorage.getItem("theme") || "light";
     setTheme(local);
   }, [isChange]);
 
