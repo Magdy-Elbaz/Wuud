@@ -25,7 +25,7 @@ body {
 
 .input-search {
   background-color: transparent !important;
-  color: #eee !important; 
+  color: #eee !important;
   border-width: 3px !important;
 }
 
@@ -89,6 +89,13 @@ hr {
 
 .bg-catigory-nav {
   background-color: #8d7669;
+}
+
+@media (max-width: 768px) {
+  .catigory-nav {
+    cursor: grab;
+    scrollbar-width: none;
+  }
 }
 
 .catigory-nav-item {

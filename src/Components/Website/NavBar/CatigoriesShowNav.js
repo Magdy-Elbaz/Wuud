@@ -57,7 +57,7 @@ export default function CatigoriesShowNav() {
     <div className="bg-catigory-nav">
       <Container>
         <div
-          className="d-flex align-items-center overflow-x-auto gap-3 py-1"
+          className="d-flex catigory-nav align-items-center overflow-x-auto gap-3 py-1"
           data-aos="fade-down"
           ref={scrollRef}
           onMouseDown={handleMouseDown}

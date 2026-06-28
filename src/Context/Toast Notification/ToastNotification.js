@@ -21,35 +21,39 @@ export default function ToastProvider({ children }) {
   }, []);
 
   return (
-    <ToastContext.Provider value={{ addToast }}>
-      <div className="toast-container d-flex align-items-end flex-column gap-3">
-        {toast.map((toast) => (
-          <div
-            key={toast.id}
-            className={`toast-item ${theme === "light" ? "bg-light-card" : "bg-dark-card text-light"} rounded-3 overflow-hidden`}
-          >
+    <div className=" overflow-hidden">
+      <ToastContext.Provider value={{ addToast }}>
+        <div className="toast-container d-flex align-items-end flex-column gap-3">
+          {toast.map((toast) => (
             <div
               key={toast.id}
-              className={`p-2 toast-content ${toast.type} d-flex align-items-center gap-2 `}
+              className={`toast-item ${theme === "light" ? "bg-light-card" : "bg-dark-card text-light"} rounded-3 overflow-hidden`}
             >
-              <DotLottieReact
-                data={
-                  toast.type === "success" ? checkBoxAnimation : xmarkAnimation
-                }
-                width={"15px"}
-                height={"15px"}
-                loop={false}
-                segment={[0, toast.type === "success" ? 60 : 70]}
-                autoplay
-              />
-              {toast.massage}
+              <div
+                key={toast.id}
+                className={`p-2 toast-content ${toast.type} d-flex align-items-center gap-2 `}
+              >
+                <DotLottieReact
+                  data={
+                    toast.type === "success"
+                      ? checkBoxAnimation
+                      : xmarkAnimation
+                  }
+                  width={"15px"}
+                  height={"15px"}
+                  loop={false}
+                  segment={[0, toast.type === "success" ? 60 : 70]}
+                  autoplay
+                />
+                {toast.massage}
+              </div>
+              <div className={`progress-toast ${toast.type}`} />
             </div>
-            <div className={`progress-toast ${toast.type}`} />
-          </div>
-        ))}
-      </div>
-      {children}
-    </ToastContext.Provider>
+          ))}
+        </div>
+        {children}
+      </ToastContext.Provider>
+    </div>
   );
 }
 
