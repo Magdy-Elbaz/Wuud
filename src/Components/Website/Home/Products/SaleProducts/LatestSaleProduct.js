@@ -43,7 +43,7 @@ export default function LatestSaleProduct() {
   ));
 
   return (
-    <Container>
+    <Container className="overflow-hidden">
       <div
         className="mt-5"
         data-aos={i18n.language === "ar" ? "fade-left" : "fade-right"}

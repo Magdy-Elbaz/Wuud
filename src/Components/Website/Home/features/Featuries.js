@@ -8,7 +8,7 @@ export default function Featuries() {
 
   return (
     <Container>
-      <div className="d-flex align-items-center justify-content-center gap-4 justify-content-md-between flex-wrap py-5 my-5">
+      <div className="d-flex align-items-center justify-content-center gap-4 justify-content-md-between overflow-hidden flex-wrap py-5 my-5">
         {FeatureData.map((item, key) => (
           <div
             key={key}

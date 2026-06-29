@@ -36,7 +36,7 @@ export default function ItemOverview({ data, loding }) {
               number={2}
               width={windowSize <= "768" ? "170px" : "350px"}
               height={"92.8px"}
-              wrap={true}
+              wrap={windowSize > "768" && true}
             />
             {windowSize <= "768" && (
               <SkeletonPage
@@ -48,14 +48,14 @@ export default function ItemOverview({ data, loding }) {
             )}
             <SkeletonPage
               number={windowSize <= "768" ? 2 : 3}
-              width={windowSize <= "768" ? "170px" : "230px"}
+              width={windowSize <= "768" ? "100%" : "230px"}
               height={"92.8px"}
               wrap={true}
             />
           </div>
         </div>
       ) : (
-        <div className="d-block d-md-flex gap-md-4">
+        <div className="d-block d-md-flex gap-0 gap-md-4">
           <div
             className={`${theme === "light" ? "bg-light-card" : "bg-dark-card"} text-success d-flex align-items-center justify-content-center shadow py-2 rounded-3 col-12 col-md-4`}
           >
@@ -73,7 +73,7 @@ export default function ItemOverview({ data, loding }) {
 
           <div className="d-flex align-items-center gap-3 gap-md-2 flex-wrap col-12 mt-3 mt-md-0 col-md-8">
             <div
-              className={`${theme === "light" ? "bg-light-card" : "bg-dark-card"} text-light shadow d-flex align-items-center justify-content-center p-3 px-1 gap-2 rounded-3 col-6`}
+              className={`${theme === "light" ? "bg-light-card" : "bg-dark-card"} text-info shadow d-flex align-items-center justify-content-center p-3 px-1 gap-2 rounded-3 col-6`}
               data-aos={windowSize <= "768" ? "fade-right" : "fade-down"}
             >
               <FontAwesomeIcon icon={faTruckFast} className="fs-2" />
@@ -103,7 +103,7 @@ export default function ItemOverview({ data, loding }) {
               </div>
             </div>
             <div
-              className={`${theme === "light" ? "bg-light-card" : "bg-dark-card"} text-warning shadow d-flex align-items-center justify-content-center p-3 px-1 gap-2 rounded-3 col-6 col-md-4`}
+              className={`${theme === "light" ? "bg-light-card" : "bg-dark-card"} text-warning shadow d-flex align-items-center justify-content-center p-3 px-1 gap-2 rounded-3 col-12 col-md-4`}
               data-aos={windowSize <= "768" ? "fade-right" : "zoom-out"}
             >
               <FontAwesomeIcon icon={faClock} className="fs-2" />
@@ -113,7 +113,7 @@ export default function ItemOverview({ data, loding }) {
               </div>
             </div>
             <div
-              className={`${theme === "light" ? "bg-light-card" : "bg-dark-card"} text-danger shadow p-3 px-1 gap-2 rounded-3 col-5 col-md-3 d-flex align-items-center justify-content-center`}
+              className={`${theme === "light" ? "bg-light-card" : "bg-dark-card"} text-danger shadow p-3 px-1 gap-2 rounded-3 col-12 col-md-3 d-flex align-items-center justify-content-center`}
               data-aos="fade-left"
             >
               <FontAwesomeIcon icon={faXmarkCircle} className="fs-2" />

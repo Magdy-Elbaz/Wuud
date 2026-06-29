@@ -9,8 +9,6 @@ export default function BtnSubmit(props) {
       className={`btn ${props.className || "btn-primary py-2"}`}
       style={{ width: props.width || "100%", height: props.height }}
       onClick={props.click}
-      data-aos="zoom-in"
-      data-aos-anchor-placement="top-bottom"
     >
       {props.loding ? (
         <div

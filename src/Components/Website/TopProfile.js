@@ -11,10 +11,10 @@ export default function TopProfile(props) {
 
   const role =
     user.role === "1995"
-      ? "Admin"
+      ? t("Admin")
       : user.role === "1999"
-        ? "Product Manger"
-        : "User";
+        ? t("Product Manger")
+        : t("User");
 
   return (
     <div className="w-100">

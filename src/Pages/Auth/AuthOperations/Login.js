@@ -81,7 +81,6 @@ export default function Login() {
         <Form className="mt-2" onSubmit={handleSubmit}>
           <Form.Group
             className={`form-custom position-relative ${i18n.language === "ar" && "ar"}`}
-            data-aos="fade-left"
           >
             <Form.Control
               id="email"
@@ -98,7 +97,6 @@ export default function Login() {
           </Form.Group>
           <Form.Group
             className={`form-custom ${i18n.language === "ar" && "ar"}`}
-            data-aos="fade-left"
           >
             <div className="position-relative d-flex align-items-center">
               <Form.Control

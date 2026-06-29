@@ -34,6 +34,7 @@ export default function Settings(props) {
     value: long || "en",
     label: long === "ar" ? "Arabic" : "English",
   });
+  console.log(language);
   const { isChange, setIsChange } = useContext(ChangeAlContext);
   const { t, i18n } = useTranslation();
 
@@ -61,8 +62,12 @@ export default function Settings(props) {
 
   return (
     <div className="position-relative">
-      <div className="d-flex align-items-center gap-1">
-        <h1 className={`fw-bold m-2 ${i18n.language === "en" ? "ms-4 me-0" : "ms-0 me-4"}`}>{t('Settings')}</h1>
+      <div className="d-flex align-items-center mt-2 gap-1">
+        <h1
+          className={`fw-bold m-2 ${i18n.language === "en" ? "ms-4 me-0" : "ms-0 me-4"}`}
+        >
+          {t("Settings")}
+        </h1>
         <FontAwesomeIcon icon={faGear} className="fs-5 mt-2" />
       </div>
       <div className="d-flex flex-wrap">
@@ -84,12 +89,12 @@ export default function Settings(props) {
           {open === "address" && (
             <EditAddress setOpen={setOpen} setRender={setRender} user={user} />
           )}
-          <div className="d-flex align-items-center gap-1">
-            <h4 className="fw-bold">{t('My Profile')}</h4>
+          <div className="d-flex align-items-center justify-content-center gap-1">
+            <h4 className="fw-bold">{t("My Profile")}</h4>
             <FontAwesomeIcon icon={faAddressCard} className="fs-4" />
           </div>
           <div
-            className={`d-flex align-items-center justify-content-between flex-grow-1 ${theme === "light" ? "bg-white" : "bg-dark-card"} shadow px-3 py-2 rounded-4 my-4`}
+            className={`d-flex align-items-center justify-content-between flex-grow-1 ${theme === "light" ? "bg-white" : "bg-dark-card"} shadow overflow-hidden px-3 py-2 rounded-4 my-4`}
           >
             <TopProfile settings={true} />
             {user.length !== 0 && (
@@ -103,10 +108,10 @@ export default function Settings(props) {
             )}
           </div>
           <div
-            className={`flex-grow-1 ${theme === "light" ? "bg-white" : "bg-dark-card"} shadow px-3 py-3 rounded-4 my-4`}
+            className={`flex-grow-1 ${theme === "light" ? "bg-white" : "bg-dark-card"} shadow overflow-hidden px-3 py-3 rounded-4`}
           >
-            <div className="d-flex align-items-center justify-content-between">
-              <p className="fw-bold m-0">{t('personal information')}</p>
+            <div className="d-flex mb-3 mb-md-0 align-items-center justify-content-between">
+              <p className="fw-bold m-0">{t("personal information")}</p>
               {user.length !== 0 && (
                 <button
                   className="btn btn-light d-flex align-items-center gap-2"
@@ -117,24 +122,24 @@ export default function Settings(props) {
                 </button>
               )}
             </div>
-            <div className="mt-2 w-50">
+            <div className="mt-2 col-12 col-md-8">
               <div className="d-flex align-items-center justify-content-between">
                 <div data-aos="fade-left">
                   <p className="m-0">{t("First Name")}</p>
                   <p className="fw-bold m-0">{user.first_name || "-"}</p>
                 </div>
                 <div data-aos="fade-right">
-                  <p className="m-0 text-center">{t('Last Name')}</p>
+                  <p className="m-0 text-center">{t("Last Name")}</p>
                   <p className="fw-bold m-0">{user.last_name || "-"}</p>
                 </div>
               </div>
               <div className="d-flex align-items-center justify-content-between flex-wrap mt-2">
                 <div data-aos="fade-right">
-                  <p className="m-0">{t('Email')}</p>
+                  <p className="m-0">{t("Email")}</p>
                   <p className="fw-bold m-0">{user.email || "-"}</p>
                 </div>
                 <div data-aos="fade-up">
-                  <p className="m-0">{t('Phone')}</p>
+                  <p className="m-0">{t("Phone")}</p>
                   <p className="fw-bold m-0">
                     {user.phone ? "+" + user.phone : "-"}
                   </p>
@@ -143,9 +148,9 @@ export default function Settings(props) {
             </div>
           </div>
           <div
-            className={`flex-grow-1 ${theme === "light" ? "bg-white" : "bg-dark-card"} shadow px-3 py-3 rounded-4 my-4`}
+            className={`flex-grow-1 ${theme === "light" ? "bg-white" : "bg-dark-card"} shadow px-3 py-3 overflow-hidden rounded-4 my-4 mb-0 mb-md-4`}
           >
-            <div className="d-flex align-items-center justify-content-between">
+            <div className="d-flex mb-3 mb-md-0 align-items-center justify-content-between">
               <p className="fw-bold m-0">{t("Address")}</p>
               {user.length !== 0 && (
                 <button
@@ -157,7 +162,7 @@ export default function Settings(props) {
                 </button>
               )}
             </div>
-            <div className="mt-2 w-50">
+            <div className="mt-2 col-12 col-md-8">
               <div className="d-flex align-items-center justify-content-between">
                 <div data-aos="fade-right">
                   <p className="m-0">{t("Country")}</p>
@@ -173,8 +178,8 @@ export default function Settings(props) {
         </div>
         <div className="my-4 px-4 col-12 col-lg-6">
           <div>
-            <div className="d-flex align-items-center gap-1">
-              <h4 className="fw-bold">{t('Language')}</h4>
+            <div className="d-flex align-items-center justify-content-center my-2 gap-1">
+              <h4 className="fw-bold">{t("Language")}</h4>
               <FontAwesomeIcon icon={faLanguage} />
             </div>
             <Select
@@ -186,9 +191,9 @@ export default function Settings(props) {
               className={`${theme === "light" ? "bg-light-card" : "bg-dark-card"} w-100`}
             />
           </div>
-          <div className="mt-3">
-            <div className="d-flex align-items-center gap-1">
-              <h4 className="fw-bold">{t('Theme')}</h4>
+          <div className="mt-3 overflow-hidden">
+            <div className="d-flex align-items-center justify-content-center my-2 gap-1">
+              <h4 className="fw-bold">{t("Theme")}</h4>
               <FontAwesomeIcon icon={faPalette} />
             </div>
             <Form>
@@ -196,7 +201,7 @@ export default function Settings(props) {
                 className="radio_dark p-3 px-5 rounded-4 shadow text-center d-flex align-items-center justify-content-between mb-3"
                 data-aos="fade-left"
               >
-                <p className="text-white m-0">{t('Dark Mode')}</p>
+                <p className="text-white m-0">{t("Dark Mode")}</p>
                 <Form.Check
                   type="radio"
                   name="theme"
@@ -209,7 +214,7 @@ export default function Settings(props) {
                 className="radio_light p-3 px-5 rounded-4 shadow d-flex align-items-center justify-content-between"
                 data-aos="fade-left"
               >
-                <p className="text-white m-0">{t('Light Mode')}</p>
+                <p className="text-white m-0">{t("Light Mode")}</p>
                 <Form.Check
                   type="radio"
                   name="theme"

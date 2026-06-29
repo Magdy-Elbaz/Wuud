@@ -6,7 +6,7 @@ export default function Landing() {
   const { t } = useTranslation();
 
   return (
-    <div className="home">
+    <div className="home overflow-hidden">
       <Container>
         <div className="page-content d-flex align-items-center mb-5">
           <div>

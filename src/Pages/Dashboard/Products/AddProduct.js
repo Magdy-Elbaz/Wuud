@@ -213,156 +213,154 @@ export default function AddProduct() {
   ));
 
   return (
-    <>
-      <div className="p-2">
-        <h2 className="title-page text-secondary">
-          {t("Add Product Page")} <FontAwesomeIcon icon={faSquarePlus} />
-        </h2>
-        <Form onSubmit={handleEdit} className="form-dashboard form-product">
-          <Form.Group className="mb-3" controlId="categore">
-            <Form.Label>{t("Category")} :</Form.Label>
-            <Form.Select
-              name="category"
-              value={form.category}
-              onChange={handleChange}
-              className={`${theme === "light" ? "bg-light-card" : "bg-dark-card placeholder-light text-light"}`}
-              ref={inputOne}
-            >
-              <option disabled>{t("Select Category")}</option>
-              {categoryShow}
-            </Form.Select>
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="title">
-            <Form.Label>{t("Title")} :</Form.Label>
-            <Form.Control
-              type="text"
-              name="title"
-              value={form.title}
-              onChange={handleChange}
-              placeholder={t("Enter Title")}
-              className={`${theme === "light" ? "bg-light-card" : "bg-dark-card placeholder-light text-light"}`}
-              required
-              disabled={!sent}
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="description">
-            <Form.Label>{t("Description")} :</Form.Label>
-            <Form.Control
-              type="text"
-              name="description"
-              value={form.description}
-              onChange={handleChange}
-              placeholder={t("Enter Description")}
-              className={`${theme === "light" ? "bg-light-card" : "bg-dark-card placeholder-light text-light"}`}
-              required
-              disabled={!sent}
-            />
-          </Form.Group>
-          <div className="d-flex align-content-center gap-3">
-            <Form.Group className="mb-3 w-50" controlId="price">
-              <Form.Label>{t("Price")} :</Form.Label>
-              <Form.Control
-                type="text"
-                name="price"
-                value={form.price}
-                onChange={handleChange}
-                placeholder={t("Enter Price")}
-                className={`${theme === "light" ? "bg-light-card" : "bg-dark-card placeholder-light text-light"}`}
-                required
-                disabled={!sent}
-              />
-            </Form.Group>
-            <Form.Group className="mb-3 w-50" controlId="discount">
-              <Form.Label>{t("Discount")} :</Form.Label>
-              <Form.Control
-                type="text"
-                name="discount"
-                value={form.discount}
-                onChange={handleChange}
-                placeholder={t("Enter Discount")}
-                className={`${theme === "light" ? "bg-light-card" : "bg-dark-card placeholder-light text-light"}`}
-                required
-                disabled={!sent}
-              />
-            </Form.Group>
-          </div>
-          <Form.Group className="mb-3" controlId="about">
-            <Form.Label>{t("About")} :</Form.Label>
-            <Form.Control
-              type="text"
-              name="About"
-              value={form.About}
-              onChange={handleChange}
-              placeholder={t("Enter About")}
-              className={`${theme === "light" ? "bg-light-card" : "bg-dark-card placeholder-light text-light"}`}
-              required
-              disabled={!sent}
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="stock">
-            <Form.Label>{t("Stock")} :</Form.Label>
-            <Form.Control
-              type="number"
-              name="stock"
-              value={form.stock}
-              onChange={handleChange}
-              className={`${theme === "light" ? "bg-light-card" : "bg-dark-card placeholder-light text-light"}`}
-              required
-              disabled={!sent}
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="image">
-            <Form.Label>{t("Product Images")} :</Form.Label>
-            <Form.Control
-              hidden
-              multiple
-              type="file"
-              onChange={handleImageChange}
-              ref={openImage}
-              disabled={!sent}
-            />
-          </Form.Group>
-          <div
-            className="d-flex align-items-center justify-content-center gap-2 py-3 rounded mb-2 flex-column w-100 "
-            style={{
-              border: `2px dashed ${sent ? "#e1b070" : "gray"}`,
-              cursor: sent && "pointer",
-            }}
-            onClick={handleOpenImage}
+    <div className="p-2">
+      <h2 className="title-page text-secondary">
+        {t("Add Product Page")} <FontAwesomeIcon icon={faSquarePlus} />
+      </h2>
+      <Form onSubmit={handleEdit} className="form-dashboard form-product">
+        <Form.Group className="mb-3" controlId="categore">
+          <Form.Label>{t("Category")} :</Form.Label>
+          <Form.Select
+            name="category"
+            value={form.category}
+            onChange={handleChange}
+            className={`${theme === "light" ? "bg-light-card" : "bg-dark-card placeholder-light text-light"}`}
+            ref={inputOne}
           >
-            <img
-              src={require(`../../../Assets/upload.png`)}
-              alt="upload Here"
-              width="100px"
-              style={{ filter: !sent && "grayscale(1)" }}
-            />
-            <p
-              className={`fw-bold ${sent && "text-primary"}`}
-              style={{ color: !sent && "gray" }}
-            >
-              {t("Upload Images")}
-            </p>
-          </div>
-          <div
-            className="d-flex align-items-start flex-column gap-3 my-4"
-            style={{ maxHeight: "510px", overflow: "auto" }}
-          >
-            {imagesShow}
-          </div>
-          <BtnSubmit
-            loding={loding}
-            name={t("Add")}
-            disabled={
-              form.title.length <= 3 ||
-              form.description === "" ||
-              form.price === "" ||
-              form.discount === "" ||
-              form.About === "" ||
-              saveImage === true
-            }
+            <option disabled>{t("Select Category")}</option>
+            {categoryShow}
+          </Form.Select>
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="title">
+          <Form.Label>{t("Title")} :</Form.Label>
+          <Form.Control
+            type="text"
+            name="title"
+            value={form.title}
+            onChange={handleChange}
+            placeholder={t("Enter Title")}
+            className={`${theme === "light" ? "bg-light-card" : "bg-dark-card placeholder-light text-light"}`}
+            required
+            disabled={!sent}
           />
-        </Form>
-      </div>
-    </>
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="description">
+          <Form.Label>{t("Description")} :</Form.Label>
+          <Form.Control
+            type="text"
+            name="description"
+            value={form.description}
+            onChange={handleChange}
+            placeholder={t("Enter Description")}
+            className={`${theme === "light" ? "bg-light-card" : "bg-dark-card placeholder-light text-light"}`}
+            required
+            disabled={!sent}
+          />
+        </Form.Group>
+        <div className="d-flex align-content-center gap-3">
+          <Form.Group className="mb-3 w-50" controlId="price">
+            <Form.Label>{t("Price")} :</Form.Label>
+            <Form.Control
+              type="text"
+              name="price"
+              value={form.price}
+              onChange={handleChange}
+              placeholder={t("Enter Price")}
+              className={`${theme === "light" ? "bg-light-card" : "bg-dark-card placeholder-light text-light"}`}
+              required
+              disabled={!sent}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3 w-50" controlId="discount">
+            <Form.Label>{t("Discount")} :</Form.Label>
+            <Form.Control
+              type="text"
+              name="discount"
+              value={form.discount}
+              onChange={handleChange}
+              placeholder={t("Enter Discount")}
+              className={`${theme === "light" ? "bg-light-card" : "bg-dark-card placeholder-light text-light"}`}
+              required
+              disabled={!sent}
+            />
+          </Form.Group>
+        </div>
+        <Form.Group className="mb-3" controlId="about">
+          <Form.Label>{t("About")} :</Form.Label>
+          <Form.Control
+            type="text"
+            name="About"
+            value={form.About}
+            onChange={handleChange}
+            placeholder={t("Enter About")}
+            className={`${theme === "light" ? "bg-light-card" : "bg-dark-card placeholder-light text-light"}`}
+            required
+            disabled={!sent}
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="stock">
+          <Form.Label>{t("Stock")} :</Form.Label>
+          <Form.Control
+            type="number"
+            name="stock"
+            value={form.stock}
+            onChange={handleChange}
+            className={`${theme === "light" ? "bg-light-card" : "bg-dark-card placeholder-light text-light"}`}
+            required
+            disabled={!sent}
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="image">
+          <Form.Label>{t("Product Images")} :</Form.Label>
+          <Form.Control
+            hidden
+            multiple
+            type="file"
+            onChange={handleImageChange}
+            ref={openImage}
+            disabled={!sent}
+          />
+        </Form.Group>
+        <div
+          className="d-flex align-items-center justify-content-center gap-2 py-3 rounded mb-2 flex-column w-100 "
+          style={{
+            border: `2px dashed ${sent ? "#e1b070" : "gray"}`,
+            cursor: sent && "pointer",
+          }}
+          onClick={handleOpenImage}
+        >
+          <img
+            src={require(`../../../Assets/upload.png`)}
+            alt="upload Here"
+            width="100px"
+            style={{ filter: !sent && "grayscale(1)" }}
+          />
+          <p
+            className={`fw-bold ${sent && "text-primary"}`}
+            style={{ color: !sent && "gray" }}
+          >
+            {t("Upload Images")}
+          </p>
+        </div>
+        <div
+          className="d-flex align-items-start flex-column gap-3 my-4"
+          style={{ maxHeight: "510px", overflow: "auto" }}
+        >
+          {imagesShow}
+        </div>
+        <BtnSubmit
+          loding={loding}
+          name={t("Add")}
+          disabled={
+            form.title.length <= 3 ||
+            form.description === "" ||
+            form.price === "" ||
+            form.discount === "" ||
+            form.About === "" ||
+            saveImage === true
+          }
+        />
+      </Form>
+    </div>
   );
 }

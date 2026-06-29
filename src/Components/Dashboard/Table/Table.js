@@ -418,7 +418,7 @@ export default function TableShow(props) {
                         style={{
                           [i18n.language === "ar" ? "right" : "left"]:
                             searchLoding || i18n.language === "ar"
-                              ? "52.5%"
+                              ? "53.1%"
                               : "52%",
                         }}
                       >
@@ -429,7 +429,7 @@ export default function TableShow(props) {
                         style={{
                           [i18n.language === "ar" ? "right" : "left"]:
                             searchLoding || i18n.language === "ar"
-                              ? "53%"
+                              ? "53.5%"
                               : "52.5%",
                         }}
                       >
@@ -440,7 +440,7 @@ export default function TableShow(props) {
                         style={{
                           [i18n.language === "ar" ? "right" : "left"]:
                             searchLoding || i18n.language === "ar"
-                              ? "53.5%"
+                              ? "54%"
                               : "53%",
                         }}
                       >

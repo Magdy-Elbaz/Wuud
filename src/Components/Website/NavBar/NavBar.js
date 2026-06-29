@@ -14,9 +14,11 @@ export default function NavBar() {
   return (
     <>
       <div className="navbar bg-primary" dir="ltr">
-        <CartShop open={openCart} setOpen={setOpenCart} />
+        <div className="overflow-hidden">
+          <CartShop open={openCart} setOpen={setOpenCart} />
+        </div>
         <Container>
-          <div className="d-flex align-items-center justify-content-between py-2 py-md-0 flex-wrap gap-2 w-100">
+          <div className="d-flex align-items-center overflow-hidden justify-content-between py-2 py-md-0 flex-wrap gap-2 w-100">
             <Link to="/" data-aos="fade-right">
               <img src={require(`../../../Assets/logo-nav.png`)} alt="" />
             </Link>

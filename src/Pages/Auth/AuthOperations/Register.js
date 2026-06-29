@@ -106,7 +106,6 @@ export default function Register() {
           <div className="d-flex align-items-center gap-2">
             <Form.Group
               className={`form-custom position-relative ${i18n.language === "ar" && "ar"}`}
-              data-aos={i18n.language === "ar" ? "fade-left" : "fade-right"}
             >
               <Form.Control
                 id="first_name"
@@ -122,7 +121,6 @@ export default function Register() {
             </Form.Group>
             <Form.Group
               className={`form-custom position-relative ${i18n.language === "ar" && "ar"}`}
-              data-aos={i18n.language === "ar" ? "fade-right" : "fade-left"}
             >
               <Form.Control
                 id="last_name"
@@ -138,7 +136,6 @@ export default function Register() {
           <div className="d-flex align-items-center gap-2">
             <Form.Group
               className={`form-custom position-relative ${i18n.language === "ar" && "ar"}`}
-              data-aos={i18n.language === "ar" ? "fade-left" : "fade-right"}
             >
               <Form.Control
                 id="country"
@@ -152,7 +149,6 @@ export default function Register() {
             </Form.Group>
             <Form.Group
               className={`form-custom position-relative ${i18n.language === "ar" && "ar"}`}
-              data-aos={i18n.language === "ar" ? "fade-right" : "fade-left"}
             >
               <Form.Control
                 id="city"
@@ -168,7 +164,6 @@ export default function Register() {
           <div
             className={`form-custom position-relative mb-4 ${i18n.language === "ar" && "ar"}`}
             dir="ltr"
-            data-aos="fade-right"
           >
             <PhoneInput
               country={"eg"}
@@ -185,7 +180,6 @@ export default function Register() {
           </div>
           <Form.Group
             className={`form-custom position-relative ${i18n.language === "ar" && "ar"}`}
-            data-aos="fade-left"
           >
             <Form.Control
               id="email"
@@ -202,7 +196,6 @@ export default function Register() {
           <div className="d-flex justify-content-center flex-column gap-4 my-2">
             <Form.Group
               className={`form-custom ${i18n.language === "ar" && "ar"}`}
-              data-aos="fade-right"
             >
               <div className="position-relative d-flex align-items-center">
                 <Form.Control
@@ -226,7 +219,6 @@ export default function Register() {
             </Form.Group>
             <Form.Group
               className={`form-custom ${i18n.language === "ar" ? "ar" : "en"}`}
-              data-aos="fade-left"
             >
               <div className="position-relative d-flex align-items-center">
                 <Form.Control
@@ -281,10 +273,19 @@ export default function Register() {
             </p>
           </a>
           <div className="d-flex align-items-center gap-2 mt-2">
-            <p className="m-0 text-dark" data-aos={i18n.language === "ar" ? "fade-left" : "fade-right"} data-aos-anchor-placement="top-bottom">
+            <p
+              className="m-0 text-dark"
+              data-aos={i18n.language === "ar" ? "fade-left" : "fade-right"}
+              data-aos-anchor-placement="top-bottom"
+            >
               {t("Do you already have an account?")}
             </p>
-            <Link to="/login" className="text-white text-decoration-none" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+            <Link
+              to="/login"
+              className="text-white text-decoration-none"
+              data-aos="fade-up"
+              data-aos-anchor-placement="top-bottom"
+            >
               {t("Login")}
             </Link>
           </div>

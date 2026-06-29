@@ -15,11 +15,11 @@
 }
 
 .send-message-item {
-    border-radius: 30px;
-    -webkit-border-radius: 30px;
-    -moz-border-radius: 30px;
-    -ms-border-radius: 30px;
-    -o-border-radius: 30px;
+  border-radius: 30px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
 }
 
 .contactus.en {
@@ -45,7 +45,7 @@
     -moz-border-radius: 100px !important;
     -ms-border-radius: 100px !important;
     -o-border-radius: 100px !important;
-}
+  }
 
   .send-message-item {
     border-radius: 25px 25px 0 0;
@@ -55,7 +55,8 @@
     -o-border-radius: 25px 25px 0 0;
   }
 
-  .contactus {
+  .contactus.ar,
+  .contactus.en {
     border-radius: 0 0 25px 25px;
     -webkit-border-radius: 0 0 25px 25px;
     -moz-border-radius: 0 0 25px 25px;

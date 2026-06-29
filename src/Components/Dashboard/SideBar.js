@@ -46,17 +46,13 @@ export default function SideBar() {
               ? context.isOpen
                 ? 0
                 : "-100%"
-              : windowSize > "768"
-                ? 0
-                : null,
+              : windowSize > "768" && i18n.language === "en" && 0,
           right:
             windowSize <= "768" && i18n.language === "ar"
               ? context.isOpen
                 ? 0
                 : "-100%"
-              : windowSize > "768"
-                ? 0
-                : null,
+              : windowSize > "768" && i18n.language === "ar" && 0,
           minWidth: context.isOpen
             ? windowSize <= "768"
               ? "60%"
@@ -74,7 +70,7 @@ export default function SideBar() {
             nav.role.includes(user.role) && (
               <NavLink
                 to={nav.path}
-                className={`d-flex align-items-center position-relative gap-2 px-3 side-bar-link text-secondary fw-bold ${!context.isOpen && windowSize > "768" && "show-data"}`}
+                className={`d-flex align-items-center position-relative gap-2 px-3 side-bar-link text-secondary fw-bold ${!context.isOpen && windowSize > "768" && "show-data"} ${i18n.language === "ar" ? "ar" : "en"}`}
                 key={key}
                 end
               >

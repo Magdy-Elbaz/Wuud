@@ -8,7 +8,7 @@ export default function AboutUs() {
   const { t,i18n } = useTranslation();
 
   return (
-    <div className="h-screen" dir={i18n.language === "ar" ? "rtl" : "ltr"}>
+    <div className="h-screen overflow-hidden" dir={i18n.language === "ar" ? "rtl" : "ltr"}>
       <div className="bg-image-about position-relative d-flex align-items-center justify-content-center">
         <h2 className="text-light text-center" data-aos="fade-left">
           {t("Craftsmanship passed down through generations")}

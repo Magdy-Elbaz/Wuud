@@ -48,7 +48,7 @@ export default function Shop() {
   }, [selectedOption.value, limit, search]);
 
   const ShowData = dataShop.map((data, key) => (
-    <div key={key} className="my-5">
+    <div key={key} className="my-5 overflow-hidden">
       <div className="d-flex align-items-center justify-content-between">
         <div className="d-flex align-items-center gap-2" data-aos="fade-right">
           <h2>{data.title}</h2>

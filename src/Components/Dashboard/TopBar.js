@@ -12,10 +12,10 @@ export default function TopBar() {
   const context = useContext(Menue);
   const { user } = useUser();
   const { windowSize } = useContext(WindowSize);
-  const { t , i18n } = useTranslation();
+  const { t } = useTranslation();
 
   return (
-    <div className="Top-bar d-flex align-items-center justify-content-between bg-primary">
+    <div className="top-bar d-flex align-items-center justify-content-between bg-primary">
       <div className="d-flex align-items-center gap-2 text-light">
         <div className="d-flex align-items-center gap-2">
           <img
