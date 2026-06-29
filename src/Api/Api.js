@@ -1,4 +1,4 @@
-export const baseUrl = `https://back-end-wuud-production.up.railway.app/api/`;
+export const baseUrl = `https://back-end-wuud-production.up.railway.app/api`;
 
 export const REGISTER = "register";
 export const LOGIN = "login";
