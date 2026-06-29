@@ -93,13 +93,13 @@ export default function UpdateUser() {
         </div>
       )}
       <div className="p-2">
-        <h2 className="title-page text-secondary my-2 mb-4">
+        <h2 className="mx-3 text-secondary my-2 mb-4">
           {t("User Editing Page")} <FontAwesomeIcon icon={faUserPen} />
         </h2>
         <Form onSubmit={Submit} className="form-dashboard">
           <div className="d-flex align-items-center gap-3">
             <Form.Group
-              className="mb-3 col-12 col-lg-6"
+              className="mb-3 w-50"
               controlId="exampleForm.ControlInput1"
             >
               <Form.Label>{t("First Name")} :</Form.Label>
@@ -114,7 +114,7 @@ export default function UpdateUser() {
               />
             </Form.Group>
             <Form.Group
-              className="mb-3 col-12 col-lg-6 ps-3"
+              className="mb-3 w-50"
               controlId="exampleForm.ControlInput1"
             >
               <Form.Label>{t("Last Name")} :</Form.Label>
@@ -142,7 +142,7 @@ export default function UpdateUser() {
           </Form.Group>
           <div className="d-flex align-items-center gap-3">
             <Form.Group
-              className="mb-3 col-12 col-lg-6"
+              className="mb-3 w-50"
               controlId="exampleForm.ControlInput1"
             >
               <Form.Label>{t("Country")} :</Form.Label>
@@ -155,7 +155,7 @@ export default function UpdateUser() {
               />
             </Form.Group>
             <Form.Group
-              className="mb-3 col-12 col-lg-6 ps-3"
+              className="mb-3 w-50"
               controlId="exampleForm.ControlInput1"
             >
               <Form.Label>{t("City/Stret")} :</Form.Label>

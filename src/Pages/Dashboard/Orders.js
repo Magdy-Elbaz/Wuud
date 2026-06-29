@@ -40,9 +40,9 @@ export default function Orders() {
   }, [render, limit, page, filterChips]);
 
   return (
-    <div className="p-2 overflow-hidden">
+    <div className="p-2 overflow-hidden px-3">
       <div className="d-flex align-items-center justify-content-between my-2">
-        <h2 className="title-page text-secondary">
+        <h2 className="text-secondary">
           {t('Orders Page')} <FontAwesomeIcon icon={faTruckRampBox} />
         </h2>
       </div>

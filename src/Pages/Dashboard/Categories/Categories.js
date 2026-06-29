@@ -47,11 +47,11 @@ export default function Categories() {
     <>
       <div className="p-2">
         <div className="d-flex align-items-center justify-content-between pe-2 my-2">
-          <h2 className="title-page text-secondary">
-            {t('Categories Page')} <FontAwesomeIcon icon={faBoxesStacked} />
+          <h2 className="mx-3 text-secondary">
+            {t("Categories Page")} <FontAwesomeIcon icon={faBoxesStacked} />
           </h2>
           <Link to="/dashboard/category/add" className="btn btn-primary">
-            {t('Add Category')}
+            {t("Add Category")}
           </Link>
         </div>
         <TableShow

@@ -214,7 +214,7 @@ export default function AddProduct() {
 
   return (
     <div className="p-2">
-      <h2 className="title-page text-secondary">
+      <h2 className="mx-3 text-secondary">
         {t("Add Product Page")} <FontAwesomeIcon icon={faSquarePlus} />
       </h2>
       <Form onSubmit={handleEdit} className="form-dashboard form-product">

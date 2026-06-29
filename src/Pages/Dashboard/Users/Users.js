@@ -46,11 +46,11 @@ export default function Users() {
     <>
       <div className="p-2 overflow-hidden">
         <div className="d-flex align-items-center justify-content-between pe-2 my-2">
-          <h2 className="title-page text-secondary">
-            {t('Users Page')} <FontAwesomeIcon icon={faUsers} />
+          <h2 className="mx-3 text-secondary">
+            {t("Users Page")} <FontAwesomeIcon icon={faUsers} />
           </h2>
           <Link to="/dashboard/user/add" className="btn btn-primary">
-            {t('Add User')}
+            {t("Add User")}
           </Link>
         </div>
         <TableShow

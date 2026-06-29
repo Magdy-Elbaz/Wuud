@@ -46,44 +46,40 @@ export default function AddCategory() {
   }, []);
 
   return (
-    <>
-      <div className="p-2">
-        <h2 className="title-page text-secondary">
-          {t("Add Catigory Page")} <FontAwesomeIcon icon={faBoxOpen} />
-        </h2>
-        <Form onSubmit={Submit} className="form-dashboard">
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-            <Form.Label>{t('Title')} :</Form.Label>
-            <Form.Control
-              type="text"
-              value={category.title}
-              onChange={(e) =>
-                setCategory({ ...category, title: e.target.value })
-              }
-              placeholder={t("Enter Title")}
-              className={`${theme === "light" ? "bg-light-card" : "bg-dark-card placeholder-light text-light"}`}
-              ref={inputOne}
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
-            <Form.Label>{t('Category Image')} :</Form.Label>
-            <Form.Control
-              type="file"
-              onChange={(e) =>
-                setCategory({ ...category, image: e.target.files.item(0) })
-              }
-              className={`${theme === "light" ? "bg-light-card" : "bg-dark-card placeholder-light text-light"}`}
-            />
-          </Form.Group>
-          <BtnSubmit
-            loding={loding}
-            name={t("Add")}
-            disabled={
-              category.title.length > 0 && category.image ? false : true
+    <div className="p-2">
+      <h2 className="mx-3 text-secondary">
+        {t("Add Catigory Page")} <FontAwesomeIcon icon={faBoxOpen} />
+      </h2>
+      <Form onSubmit={Submit} className="form-dashboard">
+        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+          <Form.Label>{t("Title")} :</Form.Label>
+          <Form.Control
+            type="text"
+            value={category.title}
+            onChange={(e) =>
+              setCategory({ ...category, title: e.target.value })
             }
+            placeholder={t("Enter Title")}
+            className={`${theme === "light" ? "bg-light-card" : "bg-dark-card placeholder-light text-light"}`}
+            ref={inputOne}
           />
-        </Form>
-      </div>
-    </>
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
+          <Form.Label>{t("Category Image")} :</Form.Label>
+          <Form.Control
+            type="file"
+            onChange={(e) =>
+              setCategory({ ...category, image: e.target.files.item(0) })
+            }
+            className={`${theme === "light" ? "bg-light-card" : "bg-dark-card placeholder-light text-light"}`}
+          />
+        </Form.Group>
+        <BtnSubmit
+          loding={loding}
+          name={t("Add")}
+          disabled={category.title.length > 0 && category.image ? false : true}
+        />
+      </Form>
+    </div>
   );
 }

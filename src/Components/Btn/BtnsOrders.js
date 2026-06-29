@@ -64,7 +64,7 @@ export default function BtnsOrders(props) {
   };
 
   return (
-    <div className="d-flex align-items-center justify-content-between flex-wrap gap-3 mb-3">
+    <div className="d-flex align-items-center overflow-hidden justify-content-between flex-wrap gap-3 mb-3">
       {!props.noBtnExcel && (
         <button
           className="btn btn-success d-flex align-items-center text-nowrap gap-2 px-2"

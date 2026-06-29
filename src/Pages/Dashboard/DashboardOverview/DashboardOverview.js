@@ -36,7 +36,7 @@ export default function DashboardOverview() {
 
   return (
     <>
-      <div className="mt-4 px-3">
+      <div className="mt-4 overflow-hidden p-3">
         <ItemOverview data={orders} loding={loding} />
       </div>
       <div

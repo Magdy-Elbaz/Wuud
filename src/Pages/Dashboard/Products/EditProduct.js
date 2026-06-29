@@ -225,7 +225,7 @@ export default function EditProduct() {
         {loding && <Loding />}
       </div>
       <div className="p-2">
-        <h2 className="title-page text-secondary">
+        <h2 className="mx-3 text-secondary">
           {t("Product Editing Page")} <FontAwesomeIcon icon={faPenToSquare} />
         </h2>
         <Form onSubmit={handleEdit} className="form-dashboard form-product">

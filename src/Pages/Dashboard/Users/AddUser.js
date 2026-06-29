@@ -64,7 +64,7 @@ export default function UpdateUser() {
   return (
     <>
       <div className="p-2">
-        <h2 className="title-page text-secondary mt-2">
+        <h2 className="mx-3 text-secondary mt-2">
           {t("Add User Page")} <FontAwesomeIcon icon={faUserPlus} />
         </h2>
         <Form onSubmit={Submit} className="form-dashboard">
@@ -109,7 +109,7 @@ export default function UpdateUser() {
           </Form.Group>
           <div className="d-flex align-items-center gap-3">
             <Form.Group
-              className="mb-2 col-12 col-lg-6"
+              className="mb-2 w-50"
               controlId="exampleForm.ControlInput1"
             >
               <Form.Label>{t("Country")} :</Form.Label>
@@ -122,7 +122,7 @@ export default function UpdateUser() {
               />
             </Form.Group>
             <Form.Group
-              className="mb-2 col-12 col-lg-6 ps-3"
+              className="mb-2 w-50"
               controlId="exampleForm.ControlInput1"
             >
               <Form.Label>{t("City/Stret")} :</Form.Label>

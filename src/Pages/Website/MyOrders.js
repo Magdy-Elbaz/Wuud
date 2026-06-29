@@ -23,7 +23,7 @@ export default function MyOrders(props) {
   const header = [
     { key: "customer_name", name: t("User Name") },
     { key: "product_names", name: t("Product Name") },
-    { key: "image", name: t("Product Image" )},
+    { key: "image", name: t("Product Image") },
     { key: "total_price", name: t("Total Price") },
     { key: "created_at", name: t("Created At") },
   ];
@@ -43,7 +43,7 @@ export default function MyOrders(props) {
     <Container dir={i18n.language === "ar" ? "rtl" : "ltr"}>
       <div className="h-screen p-2 overflow-hidden">
         <div className="d-flex align-items-center justify-content-between">
-          <h2 className="title-page text-secondary mt-2" data-aos="fade-right">
+          <h2 className="mx-3 text-secondary mt-2" data-aos="fade-right">
             {t("My Orders")} <FontAwesomeIcon icon={faBoxes} />
           </h2>
         </div>

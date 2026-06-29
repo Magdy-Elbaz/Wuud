@@ -69,12 +69,12 @@ export default function EditCategory() {
         </div>
       ) : (
         <div className="p-2">
-          <h2 className="title-page text-secondary">
-            {t('Category Editing Page')} <FontAwesomeIcon icon={faSquarePen} />
+          <h2 className="mx-3 text-secondary">
+            {t("Category Editing Page")} <FontAwesomeIcon icon={faSquarePen} />
           </h2>
           <Form onSubmit={Submit} className="form-dashboard">
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>{t('Title')} :</Form.Label>
+              <Form.Label>{t("Title")} :</Form.Label>
               <Form.Control
                 type="text"
                 value={category.title}
@@ -86,7 +86,7 @@ export default function EditCategory() {
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
-              <Form.Label>{t('Category Image')} :</Form.Label>
+              <Form.Label>{t("Category Image")} :</Form.Label>
               <Form.Control
                 type="file"
                 onChange={(e) =>

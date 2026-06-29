@@ -60,7 +60,7 @@ export default function Products() {
     <>
       <div className="p-2">
         <div className="d-flex align-items-center justify-content-between pe-2 my-2">
-          <h2 className="title-page text-secondary">
+          <h2 className="mx-3 text-secondary">
             {t("Products Page")} <FontAwesomeIcon icon={faTruckFast} />
           </h2>
           <Link to="/dashboard/product/add" className="btn btn-primary">

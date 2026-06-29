@@ -70,7 +70,7 @@ export default function Messages() {
   return (
     <div className="p-2 overflow-hidden">
       <div className="d-flex align-items-center justify-content-between">
-        <h2 className="title-page text-secondary mt-2">
+        <h2 className="mx-3 text-secondary mt-2">
           {t("Customer Messages")} <FontAwesomeIcon icon={faMessage} />
         </h2>
       </div>
