@@ -265,7 +265,7 @@ export default function Register() {
             }
           />
           <a
-            href={`http://127.0.0.1:8000/login-google`}
+            href={`http://back-end-wuud-production.up.railway.app/login-google`}
             className="google-btn d-block d-flex align-items-center"
             data-aos={i18n.language === "ar" ? "fade-left" : "fade-right"}
           >

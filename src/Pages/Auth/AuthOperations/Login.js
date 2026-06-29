@@ -128,7 +128,7 @@ export default function Login() {
             disabled={form.email === "" || form.password.length < 8}
           />
           <a
-            href={`http://127.0.0.1:8000/login-google`}
+            href={`http://back-end-wuud-production.up.railway.app/login-google`}
             className="google-btn d-flex align-items-center d-block"
             data-aos={i18n.language === "ar" ? "fade-left" : "fade-right"}
           >
