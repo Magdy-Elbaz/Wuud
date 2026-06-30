@@ -66,7 +66,7 @@ export default function PageHeader(props) {
         <Form.Control
           type="search"
           value={props.search}
-          className={`form-control ${theme === "dark" ? "bg-dark-card" : "bg-light-card"} ${i18n.language === "en" && "pe-5" } search-cancel-button placeholder-light text-dark py-1 px-2 mt-1 rounded-4`}
+          className={`form-control ${theme === "dark" ? "bg-dark-card text-light" : "bg-light-card text-dark"} ${i18n.language === "en" && "pe-5" } search-cancel-button placeholder-light py-1 px-2 mt-1 rounded-4`}
           id="floatingInputValue"
           onChange={(e) => props.setSearch(e.target.value)}
           placeholder={t("Search")}

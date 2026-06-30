@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { ChangeAlContext } from "./ChangeAllContext";
 
-const Theme = createContext({});
+const Theme = createContext("");
 
 export default function ThemeProvider({ children }) {
   const [theme, setTheme] = useState("light");

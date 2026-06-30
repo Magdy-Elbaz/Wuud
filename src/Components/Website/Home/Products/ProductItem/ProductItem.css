@@ -17,6 +17,9 @@
 }
 
 .product-item img {
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position:  center;
   height: 200px;
   overflow: hidden;
   transition: 0.7s ease;

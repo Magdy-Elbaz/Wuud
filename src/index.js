@@ -20,19 +20,19 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <ToastProvider>
-        <MenueProvider>
-          <WindowProvider>
-            <ChangeAllProvider>
-              <UserProvider>
-                <ThemeProvider>
+      <MenueProvider>
+        <WindowProvider>
+          <ChangeAllProvider>
+            <UserProvider>
+              <ThemeProvider>
+                <ToastProvider>
                   <App />
-                </ThemeProvider>
-              </UserProvider>
-            </ChangeAllProvider>
-          </WindowProvider>
-        </MenueProvider>
-      </ToastProvider>
+                </ToastProvider>
+              </ThemeProvider>
+            </UserProvider>
+          </ChangeAllProvider>
+        </WindowProvider>
+      </MenueProvider>
     </BrowserRouter>
   </React.StrictMode>,
 );

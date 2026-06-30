@@ -52,7 +52,7 @@ export default function Shop() {
       <div className="d-flex align-items-center justify-content-between">
         <div className="d-flex align-items-center gap-2" data-aos="fade-right">
           <h2>{data.title}</h2>
-          <img src={data.image} width={"50px"} height={"50px"} alt="" />
+          <img src={data.image} width={"50px"} height={"50px"} className="rounded-circle" alt="" />
         </div>
         <Link to={`/category/${data.id}`} className="btn btn-primary" data-aos="fade-left">
           {t('View All')}

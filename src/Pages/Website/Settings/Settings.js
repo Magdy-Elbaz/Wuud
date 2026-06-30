@@ -19,24 +19,23 @@ import Select from "react-select";
 import { useTranslation } from "react-i18next";
 import "./settings.css";
 
-const options = [
-  { value: "en", label: "English" },
-  { value: "ar", label: "Arabic" },
-];
-
 export default function Settings(props) {
   const { user, setRender } = useUser();
   const [open, setOpen] = useState("");
   const theme = useTheme();
-  const [themes, setTheme] = useState(theme || "light");
+  const [themes, setThemes] = useState(theme || "light");
   const long = localStorage.getItem("i18nextLng");
+  const { t, i18n } = useTranslation();
   const [language, setlanguage] = useState({
     value: long || "en",
-    label: long === "ar" ? "Arabic" : "English",
+    label: long === "ar" ? "عربي" : "English",
   });
-  console.log(language);
   const { isChange, setIsChange } = useContext(ChangeAlContext);
-  const { t, i18n } = useTranslation();
+
+  const options = [
+    { value: "en", label: t("English") },
+    { value: "ar", label: t("Arabic") },
+  ];
 
   useEffect(() => {
     window.localStorage.setItem("theme", themes);
@@ -62,7 +61,7 @@ export default function Settings(props) {
 
   return (
     <div className="position-relative">
-      <div className="d-flex align-items-center mt-2 gap-1">
+      <div className="d-flex align-items-center gap-1">
         <h1
           className={`fw-bold m-2 ${i18n.language === "en" ? "ms-4 me-0" : "ms-0 me-4"}`}
         >
@@ -206,8 +205,8 @@ export default function Settings(props) {
                   type="radio"
                   name="theme"
                   value="dark"
-                  checked={theme === "dark"}
-                  onChange={(e) => setTheme(e.target.value)}
+                  checked={themes === "dark"}
+                  onChange={(e) => setThemes(e.target.value)}
                 />
               </div>
               <div
@@ -219,8 +218,8 @@ export default function Settings(props) {
                   type="radio"
                   name="theme"
                   value="light"
-                  checked={theme === "light"}
-                  onChange={(e) => setTheme(e.target.value)}
+                  checked={themes === "light"}
+                  onChange={(e) => setThemes(e.target.value)}
                 />
               </div>
             </Form>

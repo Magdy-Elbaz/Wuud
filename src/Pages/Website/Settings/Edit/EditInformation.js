@@ -31,7 +31,7 @@ export default function EditInformation({ setOpen, setRender, user }) {
     try {
       await Axios.put(`${USER}/update-profile`, forms);
       setRender((prev) => !prev);
-      addToast("Modified successfully");
+      addToast(t("Modified successfully"));
       setOpen("");
     } catch (err) {
       console.log(err);

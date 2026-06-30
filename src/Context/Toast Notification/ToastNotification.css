@@ -1,8 +1,9 @@
 .toast-container {
   position: fixed !important;
-  top: 80px;
+  bottom: 15px;
   right: 5px;
   z-index: 9999 !important;
+  pointer-events: auto !important;
 }
 
 .toast-item {
@@ -32,8 +33,8 @@
 
 .progress-toast {
   height: 3px;
-  animation: progressAnimation 8s linear;
-  -webkit-animation: progressAnimation 8s linear;
+  animation: progressAnimation 10s linear;
+  -webkit-animation: progressAnimation 10s linear;
 }
 
 @keyframes progressAnimation {

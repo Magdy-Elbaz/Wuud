@@ -42,7 +42,7 @@ export const link = [
     role: ["1995"],
   },
   {
-    name: "Customer messages",
+    name: "Messages",
     path: "messages",
     icon: faMessage,
     role: ["1995"],

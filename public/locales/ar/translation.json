@@ -165,7 +165,7 @@
   "Categories": "الفئات",
   "Products": "المنتجات",
   "Orders": "الطلبات",
-  "Customer messages": "رسائل العملاء",
+  "Messages": "الرسائل",
   "Add User": "إضافة مستخدم",
   "Add Category": "أضافه فئة",
   "Add Product": "أضافة منتج",
@@ -237,5 +237,8 @@
   "Delete":"حذف",
   "Enter Country":"أدخل الدولة",
   "Enter City/Stret":"أدخل المدينة/الشارع",
-  "Search for category":"البحث عن الفئة"
+  "Search for category":"البحث عن الفئة",
+  "Modified successfully":"تم التعديل بنجاح",
+  "English":"إنجليزي",
+  "Arabic":"عربي"
 }

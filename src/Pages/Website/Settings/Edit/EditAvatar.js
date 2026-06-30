@@ -31,7 +31,7 @@ export default function EditAvatar({ setOpen, avatar, setRender }) {
     try {
       await Axios.post(`${USER}/update-avatar`, formData);
       setRender((prev) => !prev);
-      addToast("Modified successfully");
+      addToast(t("Modified successfully"));
       setOpen("");
     } catch (err) {
       console.log(err);

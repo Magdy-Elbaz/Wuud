@@ -67,12 +67,15 @@ export default function CartShop({ open, setOpen }) {
   const showProduct = Products.map((pro, key) => (
     <div key={key} className="d-flex gap-2 my-2">
       <div className="w-50 h-50">
-        <img
-          src={pro.images[0].image}
-          className="w-100 h-25"
-          alt=""
-          style={{ objectFit: "cover" }}
-        />
+        <div className="w-100 h-25">
+          <img
+            src={pro.images[0].image}
+            width="100%"
+            height="100%"
+            alt=""
+            style={{ objectFit: "cover" }}
+          />
+        </div>
         <div className="w-100 mt-2">
           <PlusMinusBtn
             id={pro.id}
@@ -176,17 +179,19 @@ export default function CartShop({ open, setOpen }) {
               alt=""
             />
             <p className="fs-5 fw-bold mt-1 mb-0">
-              {t('Your shopping cart is now empty')}
+              {t("Your shopping cart is now empty")}
             </p>
             <p className="text-secondary">
-              {t("It seems you haven't added any products yet. Browse our products and discover what you like.")}
+              {t(
+                "It seems you haven't added any products yet. Browse our products and discover what you like.",
+              )}
             </p>
             <Link
               to="./shop"
               className="btn btn-primary w-75"
               onClick={() => setOpen(false)}
             >
-              {t('Shop Now')}
+              {t("Shop Now")}
             </Link>
             <Link
               to="/"
@@ -194,7 +199,7 @@ export default function CartShop({ open, setOpen }) {
               style={{ backgroundColor: "#ccc8bf" }}
               onClick={() => setOpen(false)}
             >
-              {t('Return Home page')}
+              {t("Return Home page")}
             </Link>
           </div>
         )}
@@ -203,27 +208,29 @@ export default function CartShop({ open, setOpen }) {
             <div className="d-flex align-items-center justify-content-center mt-4 mb-3">
               <div className="border border-2 border-secondary w-100 p-2 rounded-2 d-flex align-items-center justify-content-between">
                 <div className="d-flex gap-2">
-                  <p className="m-0 fw-bold">{t('Total')}:</p>
+                  <p className="m-0 fw-bold">{t("Total")}:</p>
                   <span>{total}</span>
                 </div>
 
                 <Button variant="danger" onClick={handleClickShow}>
-                  {t('Delete All')}
+                  {t("Delete All")}
                 </Button>
 
                 <Modal show={show} onHide={handleClickShow}>
                   <Modal.Header closeButton>
-                    <Modal.Title>{t('Delete All')}</Modal.Title>
+                    <Modal.Title>{t("Delete All")}</Modal.Title>
                   </Modal.Header>
                   <Modal.Body>
-                    {t('Warning! All items will be permanently deleted. Do you want to continue?')}
+                    {t(
+                      "Warning! All items will be permanently deleted. Do you want to continue?",
+                    )}
                   </Modal.Body>
                   <Modal.Footer>
                     <Button variant="secondary" onClick={handleClickShow}>
-                      {t('No')}
+                      {t("No")}
                     </Button>
                     <Button variant="primary" onClick={handleDeletAll}>
-                      {t('Yes')}
+                      {t("Yes")}
                     </Button>
                   </Modal.Footer>
                 </Modal>
