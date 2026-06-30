@@ -12,7 +12,7 @@ export default function LatestProducties() {
   const [loding, setLoding] = useState(true);
   const { isChange } = useContext(ChangeAlContext);
   const { windowSize } = useContext(WindowSize);
-  const { t,i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     Axios.get(`${LATEST}`)
@@ -31,9 +31,11 @@ export default function LatestProducties() {
     />
   ));
   return (
-    <div className={`col-lg-6 col-12 ${i18n.language === "ar" ? "pe-md-5" : "ps-md-5"}`}>
-      <h1 className="m-0">{t('Latest Products')}</h1>
-      <div className="d-flex align-items-center flex-wrap mt-3 gap-4">
+    <div
+      className={`col-lg-6 col-12 ${i18n.language === "ar" ? "pe-md-5" : "ps-md-5"}`}
+    >
+      <h1 className="m-0 text-center">{t("Latest Products")}</h1>
+      <div className="d-flex align-items-center justify-content-center flex-wrap mt-3 gap-4">
         {loding ? (
           <div className="d-flex align-items-center justify-content-center flex-wrap">
             <SkeletonPage

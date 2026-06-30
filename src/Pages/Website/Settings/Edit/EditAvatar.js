@@ -47,10 +47,10 @@ export default function EditAvatar({ setOpen, avatar, setRender }) {
         onClick={() => setOpen("")}
       />
       <div
-        className={`${theme === "light" ? "bg-light-card" : "bg-dark-card text-light"} rounded-4 w-50 p-2`}
+        className={`${theme === "light" ? "bg-light-card" : "bg-dark-card text-light"} rounded-4 col-11 col-md-6 p-2`}
       >
         <div className="d-flex align-content-center justify-content-between">
-          <p className="m-0 fw-bold">{t('Edit Avatar')}</p>
+          <p className="m-0 fw-bold">{t("Edit Avatar")}</p>
           <button
             className={`btn btn-close ${theme === "dark" && "bg-light"}`}
             onClick={() => setOpen("")}

@@ -93,18 +93,24 @@ export default function CustomerOpinions({ product, commentsHome, id }) {
             />
             <div className="w-100">
               <div className="d-flex align-items-center justify-content-between">
-                <h4 className="m-0 text-capitalize">
+                <h4
+                  className={`m-0 text-capitalize ${theme === "dark" && "text-light"}`}
+                >
                   {review.user.first_name + " " + review.user.last_name}
                 </h4>
                 {!commentsHome && <Stars product={review} />}
               </div>
-              <small className="text-muted">
+              <small
+                className={`${theme === "dark" ? "text-light" : "text-muted"}`}
+              >
                 {formatDistanceToNow(new Date(review.created_at), {
                   locale: i18n.language === "ar" ? ar : undefined,
                   addSuffix: true,
                 })}
               </small>
-              <p className="m-0">"{StringSlice(review.comment, commentsHome && 50)}"</p>
+              <p className="m-0">
+                "{StringSlice(review.comment, commentsHome && 40)}"
+              </p>
             </div>
           </div>
         </div>
@@ -146,7 +152,9 @@ export default function CustomerOpinions({ product, commentsHome, id }) {
                 addSuffix: true,
               })}
             </small>
-            <p className="m-0">"{StringSlice(review.comment, commentsHome && 50)}"</p>
+            <p className="m-0">
+              "{StringSlice(review.comment, commentsHome && 50)}"
+            </p>
           </div>
         </div>
       </div>

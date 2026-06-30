@@ -43,7 +43,7 @@ export default function EditAddress({ setOpen, setRender, user }) {
         onClick={() => setOpen("")}
       />
       <div
-        className={`${theme === "light" ? "bg-light-card" : "bg-dark-card text-light"} rounded-4 w-50 p-2`}
+        className={`${theme === "light" ? "bg-light-card" : "bg-dark-card text-light"} rounded-4 col-11 col-md-6 p-2`}
       >
         <div className="d-flex align-items-center justify-content-between">
           <p className="m-0 fw-bold fs-5">{t('Edit Your Address')}</p>

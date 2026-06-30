@@ -67,9 +67,3 @@
     -o-transform: translateX(0);
   }
 }
-
-@media (max-width: 768px) {
-  .toast-container {
-    top: 130px;
-  }
-}

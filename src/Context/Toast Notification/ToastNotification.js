@@ -45,6 +45,7 @@ export default function ToastProvider({ children }) {
               >
                 <div>
                   <DotLottieReact
+                    key={toast.type}
                     data={
                       toast.type === "success"
                         ? checkBoxAnimation
