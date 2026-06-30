@@ -31,7 +31,7 @@ export default function LatestProducties() {
     />
   ));
   return (
-    <div className={`col-lg-6 col-12 ${i18n.language === "ar" ? "pe-md-3" : "ps-md-3"}`}>
+    <div className={`col-lg-7 col-12 ${i18n.language === "ar" ? "pe-md-3" : "ps-md-3"}`}>
       <h1 className="m-0">{t('Latest Products')}</h1>
       <div className="d-flex align-items-center justify-content-center flex-wrap mt-3">
         {loding ? (

@@ -11,9 +11,18 @@ export default function MetaProduct({ product, stock, singleProduct }) {
       <ShowProductsQuantity stock={stock} />
       <Stars product={product} />
       <div className="d-flex align-items-center gap-1">
-        <p className="m-0 text-primary fs-5 fw-bold">{t('EGP')}{sale}</p>
+        <p className="m-0 text-primary fw-bold" style={{ fontSize: "14px" }}>
+          {sale}
+          {t("EGP")}
+        </p>
         {sale !== +product.price && (
-          <span className="text-decoration-line-through">{t('EGP')}{product.price}</span>
+          <span
+            className="text-decoration-line-through"
+            style={{ fontSize: "12px" }}
+          >
+            {product.price}
+            {t("EGP")}
+          </span>
         )}
       </div>
     </div>

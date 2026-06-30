@@ -98,7 +98,7 @@ export default function ProductItem(props) {
 
   return (
     <div
-      className={`${props.latestProduct && "col-md-6 col-12 pe-0 pe-md-3 pb-3"} product-item ${props.TopRated && "w-100"}`}
+      className={`product-item ${props.TopRated && "w-100"}`}
     >
       <div
         className={`${props.col ? "rounded-2 shadow" : "d-flex align-items-center gap-2 w-100 border-bottom"} ${props.latestProduct && "w-100"} border-secondary ${theme === "light" ? "bg-light-card" : "bg-dark-card"} p-2 position-relative`}

@@ -16,14 +16,6 @@
   z-index: -1;
 }
 
-.page-content {
-  height: calc(100vh - 60px);
-}
-
-.pergraph-home {
-  width: 75%;
-}
-
 @media (max-width: 768px) {
   .home::before {
     background-color: rgba(0, 0, 0, 0.5);

@@ -44,31 +44,29 @@ export default function Categories() {
   }, [render, limit, page]);
 
   return (
-    <>
-      <div className="p-2">
-        <div className="d-flex align-items-center justify-content-between pe-2 my-2">
-          <h2 className="mx-3 text-secondary">
-            {t("Categories Page")} <FontAwesomeIcon icon={faBoxesStacked} />
-          </h2>
-          <Link to="/dashboard/category/add" className="btn btn-primary">
-            {t("Add Category")}
-          </Link>
-        </div>
-        <TableShow
-          limit={limit}
-          setPage={setPage}
-          setLimit={setLimit}
-          page={page}
-          totalData={totalData}
-          header={headerTable}
-          data={categories}
-          delete={CATEGORY}
-          setRender={setRender}
-          loding={loding}
-          searchName="Title"
-          searchLink={SearchCategory}
-        />
+    <div className="p-2">
+      <div className="d-flex align-items-center justify-content-between pe-2 my-2">
+        <h2 className="mx-3 text-secondary">
+          {t("Categories Page")} <FontAwesomeIcon icon={faBoxesStacked} />
+        </h2>
+        <Link to="/dashboard/category/add" className="btn btn-primary">
+          {t("Add Category")}
+        </Link>
       </div>
-    </>
+      <TableShow
+        limit={limit}
+        setPage={setPage}
+        setLimit={setLimit}
+        page={page}
+        totalData={totalData}
+        header={headerTable}
+        data={categories}
+        delete={CATEGORY}
+        setRender={setRender}
+        loding={loding}
+        searchName="Title"
+        searchLink={SearchCategory}
+      />
+    </div>
   );
 }

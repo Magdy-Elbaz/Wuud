@@ -7,9 +7,9 @@ export default function Landing() {
 
   return (
     <div className="home overflow-hidden">
-      <Container>
-        <div className="page-content d-flex align-items-center mb-5">
-          <div>
+      <Container className="h-100">
+        <div className="d-flex align-items-center justify-content-center h-100">
+          <div className="d-flex align-items-center justify-content-center flex-column">
             <h1 className="text-primary fw-bold" data-aos="fade-right">
               {t("Welcome to wuud")}
             </h1>
