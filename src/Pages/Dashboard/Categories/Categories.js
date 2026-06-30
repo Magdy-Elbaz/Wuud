@@ -46,7 +46,7 @@ export default function Categories() {
   return (
     <div className="p-2">
       <div className="d-flex align-items-center justify-content-between pe-2 my-2">
-        <h2 className="mx-3 text-secondary">
+        <h2 className="mx-3 text-secondary text-nowrap">
           {t("Categories Page")} <FontAwesomeIcon icon={faBoxesStacked} />
         </h2>
         <Link to="/dashboard/category/add" className="btn btn-primary">

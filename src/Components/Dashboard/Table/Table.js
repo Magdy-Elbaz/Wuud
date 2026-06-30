@@ -340,7 +340,7 @@ export default function TableShow(props) {
   return (
     <>
       {props.searchLink && (
-        <div className="d-flex align-items-center overflow-hidden gap-4 mb-3 mt-3">
+        <div className="d-flex align-items-center overflow-hidden gap-4 py-3 px-1">
           <div
             className="d-flex w-50 align-content-center position-relative"
             data-aos={i18n.language === "ar" ? "fade-left" : "fade-right"}
@@ -358,11 +358,15 @@ export default function TableShow(props) {
             />
           </div>
           <Form.Control
-            type="date"
+            type="text"
             className={`px-2 w-50 ${theme === "light" ? "bg-light-card" : "bg-dark-card placeholder-light text-light"}`}
             value={searchDate}
+            onFocus={(e) => (e.target.type = "date")}
             placeholder="mm/dd/yyyy"
             onChange={(e) => SetSearchDate(e.target.value)}
+            onBlur={(e) => {
+              if (!e.target.value) e.target.type = "text"; // 3. لو سابه فاضي يرجع نص تاني
+            }}
             data-aos={i18n.language === "ar" ? "fade-right" : "fade-left"}
           />
         </div>
