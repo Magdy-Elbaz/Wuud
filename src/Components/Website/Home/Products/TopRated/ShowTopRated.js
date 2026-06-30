@@ -23,7 +23,7 @@ export default function ShowTopRated() {
   ));
 
   return (
-    <div className="col-lg-5 col-12 border border-primary border-3">
+    <div className="col-lg-6 col-12 border border-primary border-3">
       <h1 className="text-light bg-primary text-center fw-bold p-2 m-0">
         {t("Top Rated")}
       </h1>

@@ -63,7 +63,7 @@ export default function EditAddress({ setOpen, setRender, user }) {
                 value={forms.country}
                 onChange={handleChange}
                 placeholder={t("Enter Your Country")}
-                className={`${theme === "light" ? "bg-light-card" : "bg-dark-card placeholder-light text-light"}`}
+                className={`${theme === "light" ? "bg-light-card shadow" : "bg-dark-card placeholder-light text-light shadow-light"}`}
                 required
               />
             </Form.Group>
@@ -76,7 +76,7 @@ export default function EditAddress({ setOpen, setRender, user }) {
                 value={forms.city}
                 onChange={handleChange}
                 placeholder={t("Enter Your City/Stret")}
-                className={`${theme === "light" ? "bg-light-card" : "bg-dark-card placeholder-light text-light"}`}
+                className={`${theme === "light" ? "bg-light-card shadow" : "bg-dark-card placeholder-light text-light shadow-light"}`}
                 required
               />
             </Form.Group>

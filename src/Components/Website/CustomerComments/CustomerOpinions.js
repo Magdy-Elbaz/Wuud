@@ -81,8 +81,8 @@ export default function CustomerOpinions({ product, commentsHome, id }) {
           data-aos="fade-right"
         >
           <div
-            className={`${commentsHome ? "p-2" : "px-3"} w-100 ${theme === "light" ? "bg-light-card" : "bg-dark-card"} rounded-3 d-flex align-items-center gap-2`}
-            style={{ height: "110px" }}
+            className={`${commentsHome ? "p-2" : "p-3"} w-100 ${theme === "light" ? "bg-light-card" : "bg-dark-card"} rounded-3 d-flex align-items-center gap-2`}
+            style={{ height: commentsHome ? "110px" : "fit-content" }}
           >
             <img
               src={review.user.avatar}
@@ -104,7 +104,7 @@ export default function CustomerOpinions({ product, commentsHome, id }) {
                   addSuffix: true,
                 })}
               </small>
-              <p>"{StringSlice(review.comment, commentsHome && 60)}"</p>
+              <p className="m-0">"{StringSlice(review.comment, commentsHome && 50)}"</p>
             </div>
           </div>
         </div>
@@ -116,8 +116,8 @@ export default function CustomerOpinions({ product, commentsHome, id }) {
         data-aos="fade-right"
       >
         <div
-          className={`${commentsHome ? `gap-2 p-2` : "px-3 gap-4 shadow"} ${theme === "light" ? "bg-light-card" : "bg-dark-card"} w-100 rounded-3 d-flex align-items-center`}
-          style={{ height: "110px" }}
+          className={`${commentsHome ? `gap-2 p-2` : "p-3 gap-4 shadow"} ${theme === "light" ? "bg-light-card" : "bg-dark-card"} w-100 rounded-3 d-flex align-items-center`}
+          style={{ height: commentsHome ? "110px" : "fit-content" }}
         >
           <img
             src={review.user.avatar}
@@ -146,7 +146,7 @@ export default function CustomerOpinions({ product, commentsHome, id }) {
                 addSuffix: true,
               })}
             </small>
-            <p>"{StringSlice(review.comment, commentsHome && 60)}"</p>
+            <p className="m-0">"{StringSlice(review.comment, commentsHome && 50)}"</p>
           </div>
         </div>
       </div>
@@ -213,7 +213,7 @@ export default function CustomerOpinions({ product, commentsHome, id }) {
           />
         </div>
       ) : (
-        <div className="w-100 d-flex align-items-center justify-content-center flex-wrap gap-2 my-5">
+        <div className="w-100 d-flex align-items-center justify-content-center flex-wrap gap-3 my-5">
           {reviews.length !== 0 ? (
             windowSize <= "991" && commentsHome ? (
               <Swiper

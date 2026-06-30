@@ -1,11 +1,13 @@
 import { faAnglesDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Loding from "../../Loding/Loding";
-import "./BtnSeeMore.css";
 import { useTranslation } from "react-i18next";
+import { useTheme } from "../../../Context/ThemeContext";
+import "./BtnSeeMore.css";
 
 export default function BtnSeeMore(props) {
   const { t } = useTranslation();
+  const theme = useTheme();
 
   return (
     <div
@@ -14,9 +16,9 @@ export default function BtnSeeMore(props) {
         props.setLimit((prev) => (prev + (props.singleCategory ? 16 : 5)));
         props.setLodingeeMore(true);
       }}
-      data-aos="fade-up"
+      data-aos="zoom-in"
     >
-      <div className="btn-seemore cursor-pointer d-flex align-items-center justify-content-center bg-light py-2 rounded-3">
+      <div className={`btn-seemore cursor-pointer d-flex align-items-center justify-content-center ${theme === "dark" ? "bg-dark-card" : "bg-light-card text-dark"} py-2 rounded-3`}>
         {props.lodingSeeMore ? (
           <Loding action={true} primaryLoding={true} />
         ) : (

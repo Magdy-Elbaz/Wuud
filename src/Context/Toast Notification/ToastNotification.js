@@ -14,7 +14,6 @@ export default function ToastProvider({ children }) {
   const [toast, setToast] = useState([]);
   const theme = useTheme();
   const { i18n } = useTranslation();
-  console.log(theme);
 
   const addToast = useCallback((massage, type = "success") => {
     const id = Date.now();
@@ -32,7 +31,9 @@ export default function ToastProvider({ children }) {
   return (
     <ToastContext.Provider value={{ addToast }}>
       {toast.length > 0 && document.querySelector(".bg-light") && (
-        <div className="toast-container overflow-hidden d-flex align-items-end flex-column gap-3">
+        <div
+          className={`toast-container ${i18n.language === "ar" ? "ar" : "en"} overflow-hidden d-flex align-items-end flex-column gap-3`}
+        >
           {toast.map((toast) => (
             <div
               key={toast.id}

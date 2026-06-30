@@ -70,7 +70,7 @@ export default function EditInformation({ setOpen, setRender, user }) {
                 value={forms.first_name}
                 onChange={handleChange}
                 placeholder={t('Enter Your First Name')}
-                className={`${theme === "light" ? "bg-light-card" : "bg-dark-card placeholder-light text-light"}`}
+                className={`${theme === "light" ? "bg-light-card shadow" : "bg-dark-card placeholder-light shadow-light text-light"}`}
                 required
               />
             </Form.Group>
@@ -86,7 +86,7 @@ export default function EditInformation({ setOpen, setRender, user }) {
                 value={forms.last_name}
                 onChange={handleChange}
                 placeholder={t('Enter Your Last Name')}
-                className={`${theme === "light" ? "bg-light-card" : "bg-dark-card placeholder-light text-light"}`}
+                className={`${theme === "light" ? "bg-light-card shadow" : "bg-dark-card placeholder-light shadow-light text-light"}`}
                 required
               />
             </Form.Group>
@@ -104,7 +104,7 @@ export default function EditInformation({ setOpen, setRender, user }) {
                   setForms({ ...forms, phone: phoneValue })
                 }
                 inputStyle={{ width: "100%" }}
-                className={`${theme === "light" ? "bg-light-card" : "bg-dark-card text-light"}`}
+                className={`${theme === "light" ? "bg-light-card shadow" : "bg-dark-card text-light shadow-light"}`}
                 required
               />
             </div>
@@ -117,7 +117,7 @@ export default function EditInformation({ setOpen, setRender, user }) {
                 value={forms.email}
                 onChange={handleChange}
                 placeholder={t('Enter Your Email')}
-                className={`${theme === "light" ? "bg-light-card" : "bg-dark-card placeholder-light text-light"}`}
+                className={`${theme === "light" ? "bg-light-card shadow" : "bg-dark-card placeholder-light text-light shadow-light"}`}
                 required
               />
             </Form.Group>

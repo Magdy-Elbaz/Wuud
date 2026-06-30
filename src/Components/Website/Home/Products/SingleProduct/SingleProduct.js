@@ -140,26 +140,28 @@ export default function SingleProduct() {
             <div className={"col-lg-8 col-md-6 col-12 px-3"}>
               <div className="d-flex align-items-center justify-content-between">
                 <div>
-                  <h1 data-aos="fade-up">{product.title}</h1>
+                  <div className="d-flex align-items-center justify-content-between">
+                    <h1 data-aos="fade-up">{product.title}</h1>
+                    {lodingWishlist ? (
+                      <div
+                        style={{ width: "28px", height: "28px" }}
+                        className="rounded-circle bg-light d-flex align-items-center justify-content-center"
+                      >
+                        <Loding action={true} primaryLoding={true} />
+                      </div>
+                    ) : (
+                      <FontAwesomeIcon
+                        icon={faHeart}
+                        className={`fs-5 ${!product.is_favorite ? "text-light" : "text-danger"} cursor-pointer`}
+                        onClick={handleFavorites}
+                      />
+                    )}
+                  </div>
                   <p className="m-0 text-secondary" data-aos="fade-up">
                     {product.About}
                   </p>
                   <h2 data-aos="fade-up">{product.description}</h2>
                 </div>
-                {lodingWishlist ? (
-                  <div
-                    style={{ width: "28px", height: "28px" }}
-                    className="rounded-circle bg-light d-flex align-items-center justify-content-center"
-                  >
-                    <Loding action={true} primaryLoding={true} />
-                  </div>
-                ) : (
-                  <FontAwesomeIcon
-                    icon={faHeart}
-                    className={`fs-5 ${!product.is_favorite ? "text-light" : "text-danger"} cursor-pointer`}
-                    onClick={handleFavorites}
-                  />
-                )}
               </div>
               <div className="mt-5">
                 <hr className="mb-0 mt-3" />

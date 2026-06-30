@@ -67,7 +67,7 @@ export default function CartShop({ open, setOpen }) {
   const showProduct = Products.map((pro, key) => (
     <div key={key} className="d-flex gap-2 my-2">
       <div className="w-50 h-50">
-        <div className="w-100 h-25">
+        <div className="w-100" style={{height:"140px"}}>
           <img
             src={pro.images[0].image}
             width="100%"
@@ -87,19 +87,27 @@ export default function CartShop({ open, setOpen }) {
       </div>
       <div className="d-flex align-items-center justify-content-between w-100">
         <div>
-          <ShowProductsQuantity stock={pro.stock - pro.count} />
-          <h4 className="m-0">{StringSlice(pro.title, 7)}</h4>
+          <div className="d-flex align-items-center justify-content-between">
+            <ShowProductsQuantity stock={pro.stock - pro.count} />
+            <FontAwesomeIcon
+              icon={faTrash}
+              className="text-danger cursor-pointer"
+              onClick={() => handleDelete(pro.id)}
+            />
+          </div>
+          <h4 className="m-0">{StringSlice(pro.title, 15)}</h4>
           <p className="m-0 text-secondary">{pro.description}</p>
           <div className="d-flex align-items-center gap-1">
-            <h5 className="m-0 text-primary">${pro.price - pro.discount}</h5>
-            <p className="m-0 text-decoration-line-through">{pro.price}</p>
+            <h5 className="m-0 text-primary">
+              {pro.price - pro.discount}
+              {t("EGP")}
+            </h5>
+            <p className="m-0 text-decoration-line-through">
+              {pro.price}
+              {t("EGP")}
+            </p>
           </div>
         </div>
-        <FontAwesomeIcon
-          icon={faTrash}
-          className="text-danger cursor-pointer"
-          onClick={() => handleDelete(pro.id)}
-        />
       </div>
     </div>
   ));

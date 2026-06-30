@@ -112,7 +112,7 @@ export default function CatigoriesSearch() {
             gap={"gap-4"}
             wrap={true}
           />
-        ) : search === "" && MapFilterCatigory.length === 0 ? (
+        ) : search === "" ? (
           catigoriesShow
         ) : MapFilterCatigory.length > 0 ? (
           MapFilterCatigory

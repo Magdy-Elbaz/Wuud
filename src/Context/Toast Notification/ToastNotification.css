@@ -1,9 +1,16 @@
 .toast-container {
   position: fixed !important;
   bottom: 15px;
-  right: 5px;
   z-index: 9999 !important;
   pointer-events: auto !important;
+}
+
+.toast-container.ar {
+  right: 5px;
+}
+
+.toast-container.en {
+  left: 5px;
 }
 
 .toast-item {
