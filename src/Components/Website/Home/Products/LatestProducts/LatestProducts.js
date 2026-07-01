@@ -4,14 +4,12 @@ import { LATEST } from "../../../../../Api/Api";
 import SkeletonPage from "../../../SkeletonPage";
 import ProductItem from "../ProductItem/ProductItem";
 import { ChangeAlContext } from "../../../../../Context/ChangeAllContext";
-import { WindowSize } from "../../../../../Context/WindowContext";
 import { useTranslation } from "react-i18next";
 
 export default function LatestProducties() {
   const [products, setProducts] = useState([]);
   const [loding, setLoding] = useState(true);
   const { isChange } = useContext(ChangeAlContext);
-  const { windowSize } = useContext(WindowSize);
   const { t, i18n } = useTranslation();
 
   useEffect(() => {
@@ -40,8 +38,8 @@ export default function LatestProducties() {
           <div className="d-flex align-items-center justify-content-center flex-wrap">
             <SkeletonPage
               number={4}
-              height={"350px"}
-              width={windowSize <= "768" ? windowSize - 30 + "px" : "306px"}
+              height={"353px"}
+              width={"252px"}
               wrap={true}
             />
           </div>
