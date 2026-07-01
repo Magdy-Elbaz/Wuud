@@ -30,8 +30,12 @@ export default function ContactUs() {
     e.preventDefault();
     setLoding(true);
     try {
-      const res = await Axios.post(`${CONTACT}`, data);
-      addToast(t(res.data.message));
+      await Axios.post(`${CONTACT}`, data);
+      addToast(
+        t(
+          "Your message has been received successfully, thank you for contacting us",
+        ),
+      );
       setData({ name: "", email: "", message: "" });
     } catch (err) {
       console.log(err);
