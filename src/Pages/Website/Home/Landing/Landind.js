@@ -26,7 +26,10 @@ export default function Landing() {
                 "Exclusive designs | Exceptional quality | Service tailored to your needs",
               )}
             </p>
-            <div className="d-flex align-items-center gap-2 " data-aos="fade-left">
+            <div
+              className="d-flex align-items-center gap-2"
+              data-aos="fade-left"
+            >
               <h4 className="text-light">{t("SALE UP TO")}</h4>
               <h4 className="text-primary fw-bold m-0">{t("50%")}</h4>
             </div>
@@ -35,7 +38,7 @@ export default function Landing() {
               className="btn btn-light px-5 rounded-5 mt-2"
               data-aos="fade-up"
             >
-              {t('Shop Now')}
+              {t("Shop Now")}
             </Link>
           </div>
         </div>

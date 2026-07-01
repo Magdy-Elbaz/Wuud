@@ -31,7 +31,7 @@ export default function ContactUs() {
     setLoding(true);
     try {
       const res = await Axios.post(`${CONTACT}`, data);
-      addToast(res.data.message);
+      addToast(t(res.data.message));
       setData({ name: "", email: "", message: "" });
     } catch (err) {
       console.log(err);
