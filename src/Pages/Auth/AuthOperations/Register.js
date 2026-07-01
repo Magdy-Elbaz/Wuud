@@ -212,7 +212,7 @@ export default function Register() {
                 <Form.Label htmlFor="password">{t("Password")} :</Form.Label>
                 <FontAwesomeIcon
                   icon={!iconEye1 ? faEyeSlash : faEye}
-                  className={`icon-eye ${i18n.language === "ar" && "ar"}`}
+                  className={`icon-eye ${i18n.language === "ar" ? "ar" : "en"}`}
                   onClick={() => setIconEye1((prev) => !prev)}
                 />
               </div>

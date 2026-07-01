@@ -59,8 +59,15 @@
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
-  top: -44.9%;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.timeline-content.ar::before {
+  top: -45.5%;
+}
+
+.timeline-content.en::before {
+  top: -30%;
 }
 
 .timeline-content::after {

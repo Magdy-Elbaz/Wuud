@@ -40,7 +40,7 @@ export default function OurJourney() {
     >
       <p className="date text-center m-0">{data.date}</p>
       <div
-        className={`${theme === "light" ? "bg-light-card" : "bg-dark-card"} ${i18n.language === "ar" && "ar"} p-2 timeline-content rounded-3 position-relative`}
+        className={`${theme === "light" ? "bg-light-card" : "bg-dark-card"} ${i18n.language === "ar" ? "ar" : "en"} p-2 timeline-content rounded-3 position-relative`}
       >
         <p>{t(data.description)}</p>
       </div>
@@ -48,7 +48,7 @@ export default function OurJourney() {
   ));
   return (
     <div
-      className={`timeline ${i18n.language === "ar" && "ar"} position-relative d-block d-md-flex align-items-center justify-content-between my-5`}
+      className={`timeline ${i18n.language === "ar" ? "ar" : "en"} position-relative d-block d-md-flex align-items-center justify-content-between my-5`}
     >
       {showData}
     </div>
