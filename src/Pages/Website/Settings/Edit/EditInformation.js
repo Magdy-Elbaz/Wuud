@@ -41,7 +41,7 @@ export default function EditInformation({ setOpen, setRender, user }) {
   };
 
   return (
-    <div className="w-100 h-100 position-absolute edit d-flex align-items-center justify-content-center">
+    <div className="w-100 h-100vh position-fixed edit d-flex align-items-center justify-content-center">
       <div
         className="position-absolute click-Close cursor-pointer"
         onClick={() => setOpen("")}

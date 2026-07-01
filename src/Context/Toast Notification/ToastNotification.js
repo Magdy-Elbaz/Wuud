@@ -32,7 +32,7 @@ export default function ToastProvider({ children }) {
     <ToastContext.Provider value={{ addToast }}>
       {toast.length > 0 && document.querySelector(".bg-light") && (
         <div
-          className={`toast-container ${i18n.language === "ar" ? "ar" : "en"} overflow-hidden d-flex align-items-end flex-column gap-3`}
+          className={`toast-container d-flex ${i18n.language === "ar" ? "ar align-items-end" : "en align-items-start"} overflow-hidden flex-column gap-3`}
         >
           {toast.map((toast) => (
             <div

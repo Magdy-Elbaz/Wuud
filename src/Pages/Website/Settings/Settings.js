@@ -60,7 +60,7 @@ export default function Settings(props) {
   };
 
   return (
-    <div className="position-relative">
+    <div>
       <div className="d-flex align-items-center gap-1">
         <h1
           className={`fw-bold m-2 ${i18n.language === "en" ? "ms-4 me-0" : "ms-0 me-4"}`}
